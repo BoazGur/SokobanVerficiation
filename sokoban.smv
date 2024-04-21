@@ -228,3 +228,30 @@ ASSIGN
 	init(board[10][18]) := -;
 
 	next(turn) := case
+		(possible_up) and (possible_down) and (possible_right) and (possible_left) : {u, d, r, l};
+		(possible_up) and (possible_down) and (possible_right) : {u, d, r};
+		(possible_up) and (possible_down) and (possible_left) : {u, d, l};
+		(possible_up) and (possible_right) and (possible_left) : {u, r, l};
+		(possible_down) and (possible_right) and (possible_left) : {d, r, l};
+		(possible_up) and (possible_down) : {u, d};
+		(possible_up) and (possible_right) : {u, r};
+		(possible_up) and (possible_left) : {u, l};
+		(possible_down) and (possible_right) : {d, r};
+		(possible_down) and (possible_left) : {d, l};
+		(possible_right) and (possible_left) : {r, l};
+		(possible_up) : {u};
+		(possible_down) : {d};
+		(possible_right) : {r};
+		(possible_left) : {l};
+	esac;
+
+	next(x) := case
+		(next(turn) = r) : x + 1;
+		(next(turn) = l) : x - 1;
+		TRUE : x;
+	esac;
+	next(x) := case
+		(next(turn) = d) : y + 1;
+		(next(turn) = u) : y - 1;
+		TRUE : y;
+	esac;

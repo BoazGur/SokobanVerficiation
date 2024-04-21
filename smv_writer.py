@@ -38,12 +38,92 @@ class SMVWriter:
         self.__add_transitions()
 
     def __add_transitions(self):
+        self.__add_turn_transition()
+        self.__add_x_transition()
+        self.__add_y_transition()
+        self.__add_board_transition()
+
+    def __add_board_transition(self):
+        self.content += f'\n\tnext(board[x][y]) := case'\
+                        f'\n\t\t(board[x][y] = @) : -'\
+                        f'\n\t\t(board[x][y] = +) : .'\
+                        f'\n\tesac;\n'
+        
+        self.content += f'\n\tnext(board[x + 1][y]) := case'\
+                        f'\n\t\t(board[x + 1][y] = .) and (turn = r) : -'\
+                        f'\n\t\t(board[x][y] = +) : .'\
+                        f'\n\tesac;\n'
+        
+        self.content += f'\n\tnext(board[x - 1][y]) := case'\
+                        f'\n\t\t(board[x][y] = @) : -'\
+                        f'\n\t\t(board[x][y] = +) : .'\
+                        f'\n\tesac;\n'
+        
+        self.content += f'\n\tnext(board[x][y + 1]) := case'\
+                        f'\n\t\t(board[x][y] = @) : -'\
+                        f'\n\t\t(board[x][y] = +) : .'\
+                        f'\n\tesac;\n'
+        
+        self.content += f'\n\tnext(board[x][y - 1]) := case'\
+                        f'\n\t\t(board[x][y] = @) : -'\
+                        f'\n\t\t(board[x][y] = +) : .'\
+                        f'\n\tesac;\n'
+
+    def __add_x_transition(self):
+        self.content += f'\n\tnext(x) := case'\
+                        f'\n\t\t(next(turn) = r) : x + 1;'\
+                        f'\n\t\t(next(turn) = l) : x - 1;'\
+                        f'\n\t\tTRUE : x;'\
+                        f'\n\tesac;\n'
+
+    def __add_y_transition(self):
+        self.content += f'\n\tnext(x) := case'\
+                        f'\n\t\t(next(turn) = d) : y + 1;'\
+                        f'\n\t\t(next(turn) = u) : y - 1;'\
+                        f'\n\t\tTRUE : y;'\
+                        f'\n\tesac;\n'
+
+    def __add_turn_transition(self):
         self.content += f'\n\tnext(turn) := case'
 
-        turns = ['up', 'down', 'right', 'left']
-        for i in range(1, 5):
+        turns = ['u', 'd', 'r', 'l']
+        for i in range(4, 0, -1):
             for combination in list(combinations(turns, i)):
-                print(combination) # TODO: ADD ALL COMBINATIONS TO ADD TURN TRANSITION
+                flag = False
+                if 'u' in combination:
+                    self.content += f'\n\t\t(possible_up) '
+                    flag = True
+                
+                if 'd' in combination:
+                    if flag:
+                        self.content += f'and '
+                    else:
+                        self.content += f'\n\t\t'
+                    
+                    flag = True
+                    self.content += f'(possible_down) '
+                
+                if 'r' in combination:
+                    if flag:
+                        self.content += f'and '
+                    else:
+                        self.content += f'\n\t\t'
+
+                    flag = True
+                    self.content += f'(possible_right) '
+                
+                if 'l' in combination:
+                    if flag:
+                        self.content += f'and '
+                    else:
+                        self.content += f'\n\t\t'
+
+                    flag = True
+                    self.content += f'(possible_left) '
+
+                self.content += ': {' + ', '.join(combination) + '};'
+
+        self.content += f'\n\tesac;\n'
 
     def __add_var(self):
         self.content += f'\nVAR'\
@@ -86,6 +166,7 @@ class SMVWriter:
 
 def main():
     writer = SMVWriter('board.txt', 'specs.txt')
+    # writer.add_turn_transition()
     writer.write_smv()
     writer.export_smv('sokoban.smv')
 
