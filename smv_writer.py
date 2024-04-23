@@ -22,6 +22,11 @@ class SMVWriter:
         self.__add_define()
         self.__add_var()
         self.__add_assign()
+        self.__add_specs()
+
+    def __add_specs(self):
+        for spec in self.specs:
+            self.content += f'\n{spec}'
 
     def __add_assign(self):
         self.content += f'\nASSIGN'\
@@ -44,29 +49,58 @@ class SMVWriter:
         self.__add_board_transition()
 
     def __add_board_transition(self):
-        self.content += f'\n\tnext(board[x][y]) := case'\
-                        f'\n\t\t(board[x][y] = @) : -'\
-                        f'\n\t\t(board[x][y] = +) : .'\
+        self.content += f'\n\tnext(board[y][x]) := case'\
+                        f'\n\t\t(board[y][x] = @) and (next(turn) != none) : -;'\
+                        f'\n\t\t(board[y][x] = +) and (next(turn) != none) : .;'\
+                        f'\n\t\tTRUE : board[y][x];'\
                         f'\n\tesac;\n'
         
-        self.content += f'\n\tnext(board[x + 1][y]) := case'\
-                        f'\n\t\t(board[x + 1][y] = .) and (turn = r) : -'\
-                        f'\n\t\t(board[x][y] = +) : .'\
+        self.content += f'\n\tnext(board[y][x + 1]) := case'\
+                        f'\n\t\t((board[y][x + 1] = -) or (board[y][x + 1] = $)) and (next(turn) = r) : @;'\
+                        f'\n\t\t((board[y][x + 1] = .) or (board[y][x + 1] = *)) and (next(turn) = r) : +;'\
+                        f'\n\t\tTRUE : board[y][x + 1];'\
                         f'\n\tesac;\n'
         
-        self.content += f'\n\tnext(board[x - 1][y]) := case'\
-                        f'\n\t\t(board[x][y] = @) : -'\
-                        f'\n\t\t(board[x][y] = +) : .'\
+        self.content += f'\n\tnext(board[y][x + 2]) := case'\
+                        f'\n\t\t((board[y][x + 1] = *) or (board[y][x + 1] = $)) and (board[y][x + 2] = -) and (next(turn) = r) : $;'\
+                        f'\n\t\t((board[y][x + 1] = *) or (board[y][x + 1] = $)) and (board[y][x + 2] = .) and (next(turn) = r) : *;'\
+                        f'\n\t\tTRUE : board[y][x + 2];'\
                         f'\n\tesac;\n'
         
-        self.content += f'\n\tnext(board[x][y + 1]) := case'\
-                        f'\n\t\t(board[x][y] = @) : -'\
-                        f'\n\t\t(board[x][y] = +) : .'\
+        self.content += f'\n\tnext(board[y][x - 1]) := case'\
+                        f'\n\t\t((board[y][x - 1] = -) or (board[y][x - 1] = $)) and (next(turn) = l) : @;'\
+                        f'\n\t\t((board[y][x - 1] = .) or (board[y][x - 1] = *)) and (next(turn) = l) : +;'\
+                        f'\n\t\tTRUE : board[y][x - 1];'\
                         f'\n\tesac;\n'
         
-        self.content += f'\n\tnext(board[x][y - 1]) := case'\
-                        f'\n\t\t(board[x][y] = @) : -'\
-                        f'\n\t\t(board[x][y] = +) : .'\
+        self.content += f'\n\tnext(board[y][x - 2]) := case'\
+                        f'\n\t\t((board[y][x - 1] = *) or (board[y][x - 1] = $)) and (board[y][x - 2] = -) and (next(turn) = l) : $;'\
+                        f'\n\t\t((board[y][x - 1] = *) or (board[y][x - 1] = $)) and (board[y][x - 2] = .) and (next(turn) = l) : *;'\
+                        f'\n\t\tTRUE : board[y][x - 2];'\
+                        f'\n\tesac;\n'
+        
+        self.content += f'\n\tnext(board[y + 1][x]) := case'\
+                        f'\n\t\t((board[y + 1][x] = -) or (board[y + 1][x] = $)) and (next(turn) = d) : @;'\
+                        f'\n\t\t((board[y + 1][x] = .) or (board[y + 1][x] = *)) and (next(turn) = d) : +;'\
+                        f'\n\t\tTRUE : board[y + 1][x];'\
+                        f'\n\tesac;\n'
+
+        self.content += f'\n\tnext(board[y + 2][x]) := case'\
+                        f'\n\t\t((board[y + 1][x] = *) or (board[y + 1][x] = $)) and (board[y + 2][x] = -) and (next(turn) = d) : $;'\
+                        f'\n\t\t((board[y + 1][x] = *) or (board[y + 1][x] = $)) and (board[y + 2][x] = .) and (next(turn) = d) : *;'\
+                        f'\n\t\tTRUE : board[y + 2][x];'\
+                        f'\n\tesac;\n'
+        
+        self.content += f'\n\tnext(board[y - 1][x]) := case'\
+                        f'\n\t\t((board[y - 1][x] = -) or (board[y - 1][x] = $)) and (next(turn) = u) : @;'\
+                        f'\n\t\t((board[y - 1][x] = .) or (board[y - 1][x] = *)) and (next(turn) = u) : +;'\
+                        f'\n\t\tTRUE : board[y - 1][x];'\
+                        f'\n\tesac;\n'
+        
+        self.content += f'\n\tnext(board[y - 2][x]) := case'\
+                        f'\n\t\t((board[y - 1][x] = *) or (board[y - 1][x] = $)) and (board[y - 2][x] = -) and (next(turn) = u) : $;'\
+                        f'\n\t\t((board[y - 1][x] = *) or (board[y - 1][x] = $)) and (board[y - 2][x] = .) and (next(turn) = u) : *;'\
+                        f'\n\t\tTRUE : board[y - 2][x];'\
                         f'\n\tesac;\n'
 
     def __add_x_transition(self):
@@ -122,6 +156,8 @@ class SMVWriter:
                     self.content += f'(possible_left) '
 
                 self.content += ': {' + ', '.join(combination) + '};'
+        
+        self.content += f'\n\t\tTRUE : none;'
 
         self.content += f'\n\tesac;\n'
 
@@ -139,7 +175,15 @@ class SMVWriter:
                         f'\n\tpossible_right := !((x = m-1) or (board[y][x+1] = #) or (((board[y][x+1] = $) or (board[y][x+1] = $)) and ((board[y][x+2] = $) or (board[y][x+2] = $) or (board[y][x+2] = #))));'\
                         f'\n\tpossible_left := !((x = 0) or (board[y][x-1] = #) or (((board[y][x-1] = $) or (board[y][x-1] = $)) and ((board[y][x-2] = $) or (board[y][x-2] = $) or (board[y][x-2] = #))));\n'\
 
-
+        self.content += f'\n\tdone :='
+        for i in range(self.n):
+            for j in range(self.m):
+                self.content += f' (board[{i}][{j}] != $)'
+                if (i != self.n - 1) or (j != self.m - 1):
+                    self.content += f' and'
+                else:
+                    self.content += ';\n'
+    
     def __get_coords(self):
         for y, row in enumerate(self.board):
             for x, col in enumerate(row):

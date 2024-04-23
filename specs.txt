@@ -1,1 +1,1 @@
-cool specs
+LTLSPEC !F(done)
