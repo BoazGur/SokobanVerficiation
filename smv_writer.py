@@ -77,7 +77,7 @@ class SMVWriter:
                         f'\n\tesac;\n'
 
     def __add_y_transition(self):
-        self.content += f'\n\tnext(x) := case'\
+        self.content += f'\n\tnext(y) := case'\
                         f'\n\t\t(next(turn) = d) : y + 1;'\
                         f'\n\t\t(next(turn) = u) : y - 1;'\
                         f'\n\t\tTRUE : y;'\
