@@ -1,0 +1,157 @@
+MODULE main
+
+DEFINE n := 7; m := 7;
+	possible_up := !((y = 0) or (board[y-1][x] = #) or (((board[y-1][x] = $) or (board[y-1][x] = $)) and ((board[y-2][x] = $) or (board[y-2][x] = $) or (board[y-2][x] = #))));
+	possible_down := !((y = n-1) or (board[y+1][x] = #) or (((board[y+1][x] = $) or (board[y+1][x] = $)) and ((board[y+2][x] = $) or (board[y+2][x] = $) or (board[y+2][x] = #))));
+	possible_right := !((x = m-1) or (board[y][x+1] = #) or (((board[y][x+1] = $) or (board[y][x+1] = $)) and ((board[y][x+2] = $) or (board[y][x+2] = $) or (board[y][x+2] = #))));
+	possible_left := !((x = 0) or (board[y][x-1] = #) or (((board[y][x-1] = $) or (board[y][x-1] = $)) and ((board[y][x-2] = $) or (board[y][x-2] = $) or (board[y][x-2] = #))));
+
+	done := (board[0][0] != $) and (board[0][1] != $) and (board[0][2] != $) and (board[0][3] != $) and (board[0][4] != $) and (board[0][5] != $) and (board[0][6] != $) and (board[1][0] != $) and (board[1][1] != $) and (board[1][2] != $) and (board[1][3] != $) and (board[1][4] != $) and (board[1][5] != $) and (board[1][6] != $) and (board[2][0] != $) and (board[2][1] != $) and (board[2][2] != $) and (board[2][3] != $) and (board[2][4] != $) and (board[2][5] != $) and (board[2][6] != $) and (board[3][0] != $) and (board[3][1] != $) and (board[3][2] != $) and (board[3][3] != $) and (board[3][4] != $) and (board[3][5] != $) and (board[3][6] != $) and (board[4][0] != $) and (board[4][1] != $) and (board[4][2] != $) and (board[4][3] != $) and (board[4][4] != $) and (board[4][5] != $) and (board[4][6] != $) and (board[5][0] != $) and (board[5][1] != $) and (board[5][2] != $) and (board[5][3] != $) and (board[5][4] != $) and (board[5][5] != $) and (board[5][6] != $) and (board[6][0] != $) and (board[6][1] != $) and (board[6][2] != $) and (board[6][3] != $) and (board[6][4] != $) and (board[6][5] != $) and (board[6][6] != $);
+
+VAR
+	board: array 0..6 of array 0..6 of {@, +, $, *, #, ., _};
+	turn: {u, d, r, l, none};
+	x: int;
+	y: int;
+
+ASSIGN
+	init(turn) := none;
+	init(x) := 1;
+	init(y) := 1;
+
+	init(board[0][0]) := #;
+	init(board[0][1]) := #;
+	init(board[0][2]) := #;
+	init(board[0][3]) := #;
+	init(board[0][4]) := #;
+	init(board[0][5]) := #;
+	init(board[0][6]) := #;
+	init(board[1][0]) := #;
+	init(board[1][1]) := @;
+	init(board[1][2]) := -;
+	init(board[1][3]) := -;
+	init(board[1][4]) := -;
+	init(board[1][5]) := -;
+	init(board[1][6]) := #;
+	init(board[2][0]) := #;
+	init(board[2][1]) := -;
+	init(board[2][2]) := -;
+	init(board[2][3]) := -;
+	init(board[2][4]) := .;
+	init(board[2][5]) := .;
+	init(board[2][6]) := #;
+	init(board[3][0]) := #;
+	init(board[3][1]) := -;
+	init(board[3][2]) := -;
+	init(board[3][3]) := #;
+	init(board[3][4]) := $;
+	init(board[3][5]) := $;
+	init(board[3][6]) := #;
+	init(board[4][0]) := #;
+	init(board[4][1]) := -;
+	init(board[4][2]) := -;
+	init(board[4][3]) := #;
+	init(board[4][4]) := -;
+	init(board[4][5]) := -;
+	init(board[4][6]) := #;
+	init(board[5][0]) := #;
+	init(board[5][1]) := -;
+	init(board[5][2]) := -;
+	init(board[5][3]) := #;
+	init(board[5][4]) := -;
+	init(board[5][5]) := -;
+	init(board[5][6]) := #;
+	init(board[6][0]) := #;
+	init(board[6][1]) := #;
+	init(board[6][2]) := #;
+	init(board[6][3]) := #;
+	init(board[6][4]) := #;
+	init(board[6][5]) := #;
+	init(board[6][6]) := #;
+
+	next(turn) := case
+		(possible_up) and (possible_down) and (possible_right) and (possible_left) : {u, d, r, l};
+		(possible_up) and (possible_down) and (possible_right) : {u, d, r};
+		(possible_up) and (possible_down) and (possible_left) : {u, d, l};
+		(possible_up) and (possible_right) and (possible_left) : {u, r, l};
+		(possible_down) and (possible_right) and (possible_left) : {d, r, l};
+		(possible_up) and (possible_down) : {u, d};
+		(possible_up) and (possible_right) : {u, r};
+		(possible_up) and (possible_left) : {u, l};
+		(possible_down) and (possible_right) : {d, r};
+		(possible_down) and (possible_left) : {d, l};
+		(possible_right) and (possible_left) : {r, l};
+		(possible_up) : {u};
+		(possible_down) : {d};
+		(possible_right) : {r};
+		(possible_left) : {l};
+		TRUE : none;
+	esac;
+
+	next(x) := case
+		(next(turn) = r) : x + 1;
+		(next(turn) = l) : x - 1;
+		TRUE : x;
+	esac;
+
+	next(y) := case
+		(next(turn) = d) : y + 1;
+		(next(turn) = u) : y - 1;
+		TRUE : y;
+	esac;
+
+	next(board[y][x]) := case
+		(board[y][x] = @) and (next(turn) != none) : -;
+		(board[y][x] = +) and (next(turn) != none) : .;
+		TRUE : board[y][x];
+	esac;
+
+	next(board[y][x + 1]) := case
+		((board[y][x + 1] = -) or (board[y][x + 1] = $)) and (next(turn) = r) : @;
+		((board[y][x + 1] = .) or (board[y][x + 1] = *)) and (next(turn) = r) : +;
+		TRUE : board[y][x + 1];
+	esac;
+
+	next(board[y][x + 2]) := case
+		((board[y][x + 1] = *) or (board[y][x + 1] = $)) and (board[y][x + 2] = -) and (next(turn) = r) : $;
+		((board[y][x + 1] = *) or (board[y][x + 1] = $)) and (board[y][x + 2] = .) and (next(turn) = r) : *;
+		TRUE : board[y][x + 2];
+	esac;
+
+	next(board[y][x - 1]) := case
+		((board[y][x - 1] = -) or (board[y][x - 1] = $)) and (next(turn) = l) : @;
+		((board[y][x - 1] = .) or (board[y][x - 1] = *)) and (next(turn) = l) : +;
+		TRUE : board[y][x - 1];
+	esac;
+
+	next(board[y][x - 2]) := case
+		((board[y][x - 1] = *) or (board[y][x - 1] = $)) and (board[y][x - 2] = -) and (next(turn) = l) : $;
+		((board[y][x - 1] = *) or (board[y][x - 1] = $)) and (board[y][x - 2] = .) and (next(turn) = l) : *;
+		TRUE : board[y][x - 2];
+	esac;
+
+	next(board[y + 1][x]) := case
+		((board[y + 1][x] = -) or (board[y + 1][x] = $)) and (next(turn) = d) : @;
+		((board[y + 1][x] = .) or (board[y + 1][x] = *)) and (next(turn) = d) : +;
+		TRUE : board[y + 1][x];
+	esac;
+
+	next(board[y + 2][x]) := case
+		((board[y + 1][x] = *) or (board[y + 1][x] = $)) and (board[y + 2][x] = -) and (next(turn) = d) : $;
+		((board[y + 1][x] = *) or (board[y + 1][x] = $)) and (board[y + 2][x] = .) and (next(turn) = d) : *;
+		TRUE : board[y + 2][x];
+	esac;
+
+	next(board[y - 1][x]) := case
+		((board[y - 1][x] = -) or (board[y - 1][x] = $)) and (next(turn) = u) : @;
+		((board[y - 1][x] = .) or (board[y - 1][x] = *)) and (next(turn) = u) : +;
+		TRUE : board[y - 1][x];
+	esac;
+
+	next(board[y - 2][x]) := case
+		((board[y - 1][x] = *) or (board[y - 1][x] = $)) and (board[y - 2][x] = -) and (next(turn) = u) : $;
+		((board[y - 1][x] = *) or (board[y - 1][x] = $)) and (board[y - 2][x] = .) and (next(turn) = u) : *;
+		TRUE : board[y - 2][x];
+	esac;
+
+LTLSPEC !F(done)
