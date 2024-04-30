@@ -209,7 +209,7 @@ class SMVWriter:
 
 
 def main():
-    writer = SMVWriter('board.txt', 'specs.txt')
+    writer = SMVWriter('boards\\boardEx.txt', 'specs.txt')
     # writer.add_turn_transition()
     writer.write_smv()
     writer.export_smv('sokoban.smv')
