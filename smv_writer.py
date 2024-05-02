@@ -1,5 +1,15 @@
 from itertools import combinations
 
+dictonary = {
+    "@": "shtrudel",
+    "+": "plus",
+    "$": "dollar",
+    "*": "star",
+    "#": "solamit",
+    ".": "dot",
+    "-": "minus"
+}
+
 class SMVWriter:
     def __init__(self, board_path, specs_path):
         self.board = self.__get_board(board_path)
@@ -7,6 +17,7 @@ class SMVWriter:
 
         self.x, self.y = -1, -1
         self.n, self.m = -1, -1
+
 
         self.content = ''
 
@@ -36,7 +47,7 @@ class SMVWriter:
 
         for i in range(self.n):
             for j in range(self.m):
-                self.content += f'\n\tinit(board[{i}][{j}]) := {self.board[i][j]};'
+                self.content += f'\n\tinit(board[{i * self.m + j}]) := {dictonary.get(self.board[i][j])};'
 
         self.content += '\n'
 
@@ -49,57 +60,57 @@ class SMVWriter:
         self.__add_board_transition()
 
     def __add_board_transition(self):
-        self.content += f'\n\tnext(board[y][x]) := case'\
-                        f'\n\t\t(board[y][x] = @) and (next(turn) != none) : -;'\
-                        f'\n\t\t(board[y][x] = +) and (next(turn) != none) : .;'\
-                        f'\n\t\tTRUE : board[y][x];'\
+        self.content += f'\n\tnext(board[y*m + x]) := case'\
+                        f'\n\t\t(board[y*m + x] = shtrudel) & (next(turn) != none) : minus;'\
+                        f'\n\t\t(board[y*m + x] = plus) & (next(turn) != none) : dot;'\
+                        f'\n\t\tTRUE : board[y*m + x];'\
                         f'\n\tesac;\n'
         
         self.content += f'\n\tnext(board[y][x + 1]) := case'\
-                        f'\n\t\t((board[y][x + 1] = -) or (board[y][x + 1] = $)) and (next(turn) = r) : @;'\
-                        f'\n\t\t((board[y][x + 1] = .) or (board[y][x + 1] = *)) and (next(turn) = r) : +;'\
+                        f'\n\t\t((board[y][x + 1] = minus) | (board[y][x + 1] = dollar)) & (next(turn) = r) : shtrudel;'\
+                        f'\n\t\t((board[y][x + 1] = dot) | (board[y][x + 1] = star)) & (next(turn) = r) : plus;'\
                         f'\n\t\tTRUE : board[y][x + 1];'\
                         f'\n\tesac;\n'
         
         self.content += f'\n\tnext(board[y][x + 2]) := case'\
-                        f'\n\t\t((board[y][x + 1] = *) or (board[y][x + 1] = $)) and (board[y][x + 2] = -) and (next(turn) = r) : $;'\
-                        f'\n\t\t((board[y][x + 1] = *) or (board[y][x + 1] = $)) and (board[y][x + 2] = .) and (next(turn) = r) : *;'\
+                        f'\n\t\t((board[y][x + 1] = star) | (board[y][x + 1] = dollar)) & (board[y][x + 2] = minus) & (next(turn) = r) : dollar;'\
+                        f'\n\t\t((board[y][x + 1] = star) | (board[y][x + 1] = dollar)) & (board[y][x + 2] = dot) & (next(turn) = r) : star;'\
                         f'\n\t\tTRUE : board[y][x + 2];'\
                         f'\n\tesac;\n'
         
         self.content += f'\n\tnext(board[y][x - 1]) := case'\
-                        f'\n\t\t((board[y][x - 1] = -) or (board[y][x - 1] = $)) and (next(turn) = l) : @;'\
-                        f'\n\t\t((board[y][x - 1] = .) or (board[y][x - 1] = *)) and (next(turn) = l) : +;'\
+                        f'\n\t\t((board[y][x - 1] = minus) | (board[y][x - 1] = dollar)) & (next(turn) = l) : shtrudel;'\
+                        f'\n\t\t((board[y][x - 1] = dot) | (board[y][x - 1] = star)) & (next(turn) = l) : plus;'\
                         f'\n\t\tTRUE : board[y][x - 1];'\
                         f'\n\tesac;\n'
         
         self.content += f'\n\tnext(board[y][x - 2]) := case'\
-                        f'\n\t\t((board[y][x - 1] = *) or (board[y][x - 1] = $)) and (board[y][x - 2] = -) and (next(turn) = l) : $;'\
-                        f'\n\t\t((board[y][x - 1] = *) or (board[y][x - 1] = $)) and (board[y][x - 2] = .) and (next(turn) = l) : *;'\
+                        f'\n\t\t((board[y][x - 1] = star) | (board[y][x - 1] = dollar)) & (board[y][x - 2] = minus) & (next(turn) = l) : dollar;'\
+                        f'\n\t\t((board[y][x - 1] = star) | (board[y][x - 1] = dollar)) & (board[y][x - 2] = dot) & (next(turn) = l) : star;'\
                         f'\n\t\tTRUE : board[y][x - 2];'\
                         f'\n\tesac;\n'
         
         self.content += f'\n\tnext(board[y + 1][x]) := case'\
-                        f'\n\t\t((board[y + 1][x] = -) or (board[y + 1][x] = $)) and (next(turn) = d) : @;'\
-                        f'\n\t\t((board[y + 1][x] = .) or (board[y + 1][x] = *)) and (next(turn) = d) : +;'\
+                        f'\n\t\t((board[y + 1][x] = minus) | (board[y + 1][x] = dollar)) & (next(turn) = d) : shtrudel;'\
+                        f'\n\t\t((board[y + 1][x] = dot) | (board[y + 1][x] = star)) & (next(turn) = d) : plus;'\
                         f'\n\t\tTRUE : board[y + 1][x];'\
                         f'\n\tesac;\n'
 
         self.content += f'\n\tnext(board[y + 2][x]) := case'\
-                        f'\n\t\t((board[y + 1][x] = *) or (board[y + 1][x] = $)) and (board[y + 2][x] = -) and (next(turn) = d) : $;'\
-                        f'\n\t\t((board[y + 1][x] = *) or (board[y + 1][x] = $)) and (board[y + 2][x] = .) and (next(turn) = d) : *;'\
+                        f'\n\t\t((board[y + 1][x] = star) | (board[y + 1][x] = dollar)) & (board[y + 2][x] = minus) & (next(turn) = d) : dollar;'\
+                        f'\n\t\t((board[y + 1][x] = star) | (board[y + 1][x] = dollar)) & (board[y + 2][x] = dot) & (next(turn) = d) : star;'\
                         f'\n\t\tTRUE : board[y + 2][x];'\
                         f'\n\tesac;\n'
         
         self.content += f'\n\tnext(board[y - 1][x]) := case'\
-                        f'\n\t\t((board[y - 1][x] = -) or (board[y - 1][x] = $)) and (next(turn) = u) : @;'\
-                        f'\n\t\t((board[y - 1][x] = .) or (board[y - 1][x] = *)) and (next(turn) = u) : +;'\
+                        f'\n\t\t((board[y - 1][x] = minus) | (board[y - 1][x] = dollar)) & (next(turn) = u) : shtrudel;'\
+                        f'\n\t\t((board[y - 1][x] = dot) | (board[y - 1][x] = star)) & (next(turn) = u) : plus;'\
                         f'\n\t\tTRUE : board[y - 1][x];'\
                         f'\n\tesac;\n'
         
         self.content += f'\n\tnext(board[y - 2][x]) := case'\
-                        f'\n\t\t((board[y - 1][x] = *) or (board[y - 1][x] = $)) and (board[y - 2][x] = -) and (next(turn) = u) : $;'\
-                        f'\n\t\t((board[y - 1][x] = *) or (board[y - 1][x] = $)) and (board[y - 2][x] = .) and (next(turn) = u) : *;'\
+                        f'\n\t\t((board[y - 1][x] = star) | (board[y - 1][x] = dollar)) & (board[y - 2][x] = minus) & (next(turn) = u) : dollar;'\
+                        f'\n\t\t((board[y - 1][x] = star) | (board[y - 1][x] = dollar)) & (board[y - 2][x] = dot) & (next(turn) = u) : star;'\
                         f'\n\t\tTRUE : board[y - 2][x];'\
                         f'\n\tesac;\n'
 
@@ -130,7 +141,7 @@ class SMVWriter:
                 
                 if 'd' in combination:
                     if flag:
-                        self.content += f'and '
+                        self.content += f'& '
                     else:
                         self.content += f'\n\t\t'
                     
@@ -139,7 +150,7 @@ class SMVWriter:
                 
                 if 'r' in combination:
                     if flag:
-                        self.content += f'and '
+                        self.content += f'& '
                     else:
                         self.content += f'\n\t\t'
 
@@ -148,7 +159,7 @@ class SMVWriter:
                 
                 if 'l' in combination:
                     if flag:
-                        self.content += f'and '
+                        self.content += f'& '
                     else:
                         self.content += f'\n\t\t'
 
@@ -163,31 +174,31 @@ class SMVWriter:
 
     def __add_var(self):
         self.content += f'\nVAR'\
-                        f'\n\tboard: array 0..{self.n - 1} of array 0..{self.m - 1} of {{@, +, $, *, #, ., _}};'\
+                        f'\n\tboard: array 0..{self.n * self.m - 1} of {{shtrudel, plus, dollar, star, solamit, dot, minus}};'\
                         f'\n\tturn: {{u, d, r, l, none}};'\
-                        f'\n\tx: int;'\
-                        f'\n\ty: int;\n'
+                        f'\n\tx: integer;'\
+                        f'\n\ty: integer;\n'
 
     def __add_define(self):
         self.content += f'\nDEFINE n := {self.n}; m := {self.m};'\
-                        f'\n\tpossible_up := !((y = 0) or (board[y-1][x] = #) or (((board[y-1][x] = $) or (board[y-1][x] = $)) and ((board[y-2][x] = $) or (board[y-2][x] = $) or (board[y-2][x] = #))));'\
-                        f'\n\tpossible_down := !((y = n-1) or (board[y+1][x] = #) or (((board[y+1][x] = $) or (board[y+1][x] = $)) and ((board[y+2][x] = $) or (board[y+2][x] = $) or (board[y+2][x] = #))));'\
-                        f'\n\tpossible_right := !((x = m-1) or (board[y][x+1] = #) or (((board[y][x+1] = $) or (board[y][x+1] = $)) and ((board[y][x+2] = $) or (board[y][x+2] = $) or (board[y][x+2] = #))));'\
-                        f'\n\tpossible_left := !((x = 0) or (board[y][x-1] = #) or (((board[y][x-1] = $) or (board[y][x-1] = $)) and ((board[y][x-2] = $) or (board[y][x-2] = $) or (board[y][x-2] = #))));\n'\
+                        f'\n\tpossible_up := !((y = 0) | (board[(y - 1)*m + x] = solamit) | (((board[(y - 1)*m + x] = dollar) | (board[(y - 1)*m + x] = dollar)) & ((board[(y - 2)*m + x] = dollar) | (board[(y - 2)*m + x] = dollar) | (board[(y - 2)*m + x] = solamit))));'\
+                        f'\n\tpossible_down := !((y = n - 1) | (board[(y + 1)*m + x] = solamit) | (((board[(y + 1)*m + x] = dollar) | (board[(y + 1)*m + x] = dollar)) & ((board[(y + 2)*m + x] = dollar) | (board[(y + 2)*m + x] = dollar) | (board[(y + 2)*m + x] = solamit))));'\
+                        f'\n\tpossible_right := !((x = m - 1) | (board[y*m + x + 1] = solamit) | (((board[y*m + x + 1] = dollar) | (board[y*m + x + 1] = dollar)) & ((board[y*m + x + 2] = dollar) | (board[y*m + x + 2] = dollar) | (board[y*m + x + 2] = solamit))));'\
+                        f'\n\tpossible_left := !((x = 0) | (board[y*m + x - 1] = solamit) | (((board[y*m + x - 1] = dollar) | (board[y*m + x - 1] = dollar)) & ((board[y*m + x - 2] = dollar) | (board[y*m + x - 2] = dollar) | (board[y*m + x - 2] = solamit))));\n'\
 
         self.content += f'\n\tdone :='
         for i in range(self.n):
             for j in range(self.m):
-                self.content += f' (board[{i}][{j}] != $)'
-                if (i != self.n - 1) or (j != self.m - 1):
-                    self.content += f' and'
+                self.content += f' (board[{i*self.m + j}] != dollar)'
+                if (i != self.n - 1) | (j != self.m - 1):
+                    self.content += f' &'
                 else:
                     self.content += ';\n'
     
     def __get_coords(self):
         for y, row in enumerate(self.board):
             for x, col in enumerate(row):
-                if col in ['@', '+']:
+                if col in ["@", "+"]:
                     return (x, y)
 
         return (-1, -1)
@@ -202,6 +213,8 @@ class SMVWriter:
         board = []
         with open(path, 'r') as f:
             for line in f.readlines():
+                if line[-1] == "\n":
+                    line = line[:-1]
                 row = list(line)
                 board.append(row)
 
