@@ -11,8 +11,8 @@ def main():
         writer.write_smv()
         writer.export_smv('smvs/' + board_paths[i][:-4] + '.smv')
 
-    for path in board_paths:
-        run('smvs/' + path[:-4] + '.smv')
+    for i, path in enumerate(board_paths):
+        run('smvs/' + board_paths[- 1 - i][:-4] + '.smv')
 
 
 def run(path):

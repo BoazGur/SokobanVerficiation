@@ -24,3 +24,46 @@
 *** Copyright (C) 2009-2019 by University of Trento and others
 *** See http://mathsat.fbk.eu
 
+-- specification !( F done)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 1.1 <-
+    turn = none
+    possible_up = FALSE
+    possible_down = FALSE
+    possible_right = TRUE
+    possible_left = FALSE
+    y = 1
+    x = 1
+    v_00 = solamit
+    v_01 = solamit
+    v_02 = solamit
+    v_03 = solamit
+    v_04 = solamit
+    v_10 = solamit
+    v_11 = shtrudel
+    v_12 = dollar
+    v_13 = dot
+    v_14 = solamit
+    v_20 = solamit
+    v_21 = solamit
+    v_22 = solamit
+    v_23 = solamit
+    v_24 = solamit
+    done = FALSE
+    m = 5
+    n = 3
+  -> State: 1.2 <-
+    turn = r
+    x = 2
+    v_11 = minus
+    v_12 = shtrudel
+    v_13 = star
+    done = TRUE
+  -- Loop starts here
+  -> State: 1.3 <-
+    turn = none
+    possible_right = FALSE
+    possible_left = TRUE
+  -> State: 1.4 <-
