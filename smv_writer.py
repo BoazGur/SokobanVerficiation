@@ -142,7 +142,7 @@ class SMVWriter:
 
     def __add_turn_transition(self):
         self.content += f'\n\tnext(turn) := case'\
-                        f'\n\t\tdone : none;'
+                    f'\n\t\tdone : none;'
 
         turns = ['u', 'd', 'r', 'l']
         for i in range(4, 0, -1):
