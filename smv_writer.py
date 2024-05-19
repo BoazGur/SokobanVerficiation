@@ -10,14 +10,18 @@ dictonary = {
     "-": "minus"
 }
 
+
 class SMVWriter:
-    def __init__(self, board_path, specs_path):
-        self.board = self.__get_board(board_path)
+    def __init__(self, board_path=None, specs_path=None, board=None):
+        if board is None:
+            self.board = self.__get_board(board_path)
+        else:
+            self.board = board
+        
         self.specs = self.__get_specs(specs_path)
 
         self.x, self.y = -1, -1
         self.n, self.m = -1, -1
-
 
         self.content = ''
 
@@ -54,7 +58,7 @@ class SMVWriter:
             self.content += f'!(v_{self.y-1}{self.x} = solamit);'
         else:
             self.content += f'!((v_{self.y-1}{self.x} = solamit) | (((v_{self.y-1}{self.x} = dollar) | (v_{self.y-1}{self.x} = dollar)) & ((v_{self.y-2}{self.x} = dollar) | (v_{self.y-2}{self.x} = dollar) | (v_{self.y-2}{self.x} = solamit))));'
-        
+
         self.content += f'\n\tinit(possible_down) := '
         if self.y == self.n - 1:
             self.content += 'FALSE;'
@@ -142,7 +146,7 @@ class SMVWriter:
 
     def __add_turn_transition(self):
         self.content += f'\n\tnext(turn) := case'\
-                    f'\n\t\tdone : none;'
+            f'\n\t\tdone : none;'
 
         turns = ['u', 'd', 'r', 'l']
         for i in range(4, 0, -1):
@@ -151,16 +155,16 @@ class SMVWriter:
                 if 'u' in combination:
                     self.content += f'\n\t\tnext(possible_up) '
                     flag = True
-                
+
                 if 'd' in combination:
                     if flag:
                         self.content += f'& '
                     else:
                         self.content += f'\n\t\t'
-                    
+
                     flag = True
                     self.content += f'next(possible_down) '
-                
+
                 if 'r' in combination:
                     if flag:
                         self.content += f'& '
@@ -169,7 +173,7 @@ class SMVWriter:
 
                     flag = True
                     self.content += f'next(possible_right) '
-                
+
                 if 'l' in combination:
                     if flag:
                         self.content += f'& '
@@ -180,11 +184,11 @@ class SMVWriter:
                     self.content += f'next(possible_left) '
 
                 self.content += ': {' + ', '.join(combination) + ', none};'
-        
+
         self.content += f'\n\t\tTRUE : none;'
 
         self.content += f'\n\tesac;\n'
-    
+
     def __add_possible_transition(self):
         self.content += f'\n\tnext(possible_up) := case'
         for i in range(self.n):
@@ -197,8 +201,8 @@ class SMVWriter:
                     self.content += f'\n\t\t(y = {i}) & (x = {j}) : !((v_{i-1}{j} = solamit) | (((v_{i-1}{j} = dollar) | (v_{i-1}{j} = star)) & ((v_{i-2}{j} = dollar) | (v_{i-2}{j} = star) | (v_{i-2}{j} = solamit))));'
         self.content += f'\n\t\tTRUE : FALSE;'\
                         f'\n\tesac;\n'
-        
-        self.content += f'\n\tnext(possible_down) := case'     
+
+        self.content += f'\n\tnext(possible_down) := case'
         for i in range(self.n):
             for j in range(self.m):
                 if i == self.n - 1:
@@ -209,7 +213,7 @@ class SMVWriter:
                     self.content += f'\n\t\t(y = {i}) & (x = {j}) : !((v_{i+1}{j} = solamit) | (((v_{i+1}{j} = dollar) | (v_{i+1}{j} = star)) & ((v_{i+2}{j} = dollar) | (v_{i+2}{j} = star) | (v_{i+2}{j} = solamit))));'
         self.content += f'\n\t\tTRUE : FALSE;'\
                         f'\n\tesac;\n'
-        
+
         self.content += f'\n\tnext(possible_right) := case'
         for i in range(self.n):
             for j in range(self.m):
@@ -221,7 +225,7 @@ class SMVWriter:
                     self.content += f'\n\t\t(y = {i}) & (x = {j}) : !((v_{i}{j+1} = solamit) | (((v_{i}{j+1} = dollar) | (v_{i}{j+1} = star)) & ((v_{i}{j+2} = dollar) | (v_{i}{j+2} = star) | (v_{i}{j+2} = solamit))));'
         self.content += f'\n\t\tTRUE : FALSE;'\
                         f'\n\tesac;\n'
-        
+
         self.content += f'\n\tnext(possible_left) := case'
         for i in range(self.n):
             for j in range(self.m):
@@ -233,7 +237,7 @@ class SMVWriter:
                     self.content += f'\n\t\t(y = {i}) & (x = {j}) : !((v_{i}{j-1} = solamit) | (((v_{i}{j-1} = dollar) | (v_{i}{j-1} = star)) & ((v_{i}{j-2} = dollar) | (v_{i}{j-2} = star) | (v_{i}{j-2} = solamit))));'
         self.content += f'\n\t\tTRUE : FALSE;'\
                         f'\n\tesac;\n'
-        
+
     def __add_var(self):
         self.content += f'\nVAR'\
                         f'\n\tturn: {{u, d, r, l, none}};'\
@@ -255,7 +259,7 @@ class SMVWriter:
             else:
                 self.content += f'{i}'
         self.content += '};'
-        
+
         for i in range(self.n):
             for j in range(self.m):
                 self.content += f'\n\tv_{i}{j}: {{shtrudel, plus, dollar, star, solamit, dot, minus}};'
@@ -273,7 +277,7 @@ class SMVWriter:
                     self.content += f' &'
                 else:
                     self.content += ';\n'
-    
+
     def __get_coords(self):
         for y, row in enumerate(self.board):
             for x, col in enumerate(row):
