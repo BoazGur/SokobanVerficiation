@@ -24,20 +24,5 @@
 *** Copyright (C) 2009-2019 by University of Trento and others
 *** See http://mathsat.fbk.eu
 
-nuXmv > nuXmv > -- no counterexample found with bound 0
--- no counterexample found with bound 1
--- no counterexample found with bound 2
--- no counterexample found with bound 3
--- no counterexample found with bound 4
--- no counterexample found with bound 5
--- no counterexample found with bound 6
--- no counterexample found with bound 7
--- no counterexample found with bound 8
--- no counterexample found with bound 9
--- no counterexample found with bound 10
--- no counterexample found with bound 11
--- no counterexample found with bound 12
--- no counterexample found with bound 13
--- no counterexample found with bound 14
--- no counterexample found with bound 15
-nuXmv > time in seconds: 25.702287197113037
+nuXmv > nuXmv > -- specification !( F done)  is true
+nuXmv > 

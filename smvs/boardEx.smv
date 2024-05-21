@@ -10,8 +10,8 @@ VAR
 	possible_down: boolean;
 	possible_right: boolean;
 	possible_left: boolean;
-	y: {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-	x: {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};
+	y: 0..10;
+	x: 0..18;
 	v_00: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_01: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_02: {shtrudel, plus, dollar, star, solamit, dot, minus};

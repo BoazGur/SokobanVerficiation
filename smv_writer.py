@@ -14,11 +14,11 @@ dictonary = {
 class SMVWriter:
     def __init__(self, board_path=None, specs_path=None, board=None):
         if board is None:
-            self.board = self.__get_board(board_path)
+            self.board = self.get_board(board_path)
         else:
             self.board = board
         
-        self.specs = self.__get_specs(specs_path)
+        self.specs = self.get_specs(specs_path)
 
         self.x, self.y = -1, -1
         self.n, self.m = -1, -1
@@ -32,20 +32,24 @@ class SMVWriter:
     def write_smv(self):
         self.content += 'MODULE main\n'
 
-        self.x, self.y = self.__get_coords()
+        self.x, self.y = self.get_coords()
         self.n, self.m = len(self.board), len(self.board[0])
-        self.__add_define()
-        self.__add_var()
-        self.__add_assign()
-        self.__add_specs()
+        self.add_define()
+        self.add_var()
+        self.add_assign()
+        self.add_specs()
 
-    def __add_specs(self):
+    def add_specs(self):
         for spec in self.specs:
             self.content += f'\n{spec}'
 
-    def __add_assign(self):
+    def add_assign(self):
         self.content += f'\nASSIGN'
 
+        self.add_init()
+        self.add_transitions()
+
+    def add_init(self):
         for i in range(self.n):
             for j in range(self.m):
                 self.content += f'\n\tinit(v_{i}{j}) := {dictonary.get(self.board[i][j])};'
@@ -87,16 +91,14 @@ class SMVWriter:
                         f'\n\tinit(x) := {self.x};'\
                         f'\n\tinit(y) := {self.y};\n'
 
-        self.__add_transitions()
+    def add_transitions(self):
+        self.add_possible_transition()
+        self.add_turn_transition()
+        self.add_x_transition()
+        self.add_y_transition()
+        self.add_board_transition()
 
-    def __add_transitions(self):
-        self.__add_possible_transition()
-        self.__add_turn_transition()
-        self.__add_x_transition()
-        self.__add_y_transition()
-        self.__add_board_transition()
-
-    def __add_board_transition(self):
+    def add_board_transition(self):
         for i in range(self.n):
             for j in range(self.m):
                 self.content += f'\n\tnext(v_{i}{j}) := case'\
@@ -130,21 +132,21 @@ class SMVWriter:
                 self.content += f'\n\t\tTRUE : v_{i}{j};'\
                                 f'\n\tesac;\n'
 
-    def __add_x_transition(self):
+    def add_x_transition(self):
         self.content += f'\n\tnext(x) := case'\
                         f'\n\t\t(next(turn) = r) & (x < m - 1) : x + 1;'\
                         f'\n\t\t(next(turn) = l) & (x > 0) : x - 1;'\
                         f'\n\t\tTRUE : x;'\
                         f'\n\tesac;\n'
 
-    def __add_y_transition(self):
+    def add_y_transition(self):
         self.content += f'\n\tnext(y) := case'\
                         f'\n\t\t(next(turn) = d) & (y < n - 1) : y + 1;'\
                         f'\n\t\t(next(turn) = u) & (y > 0) : y - 1;'\
                         f'\n\t\tTRUE : y;'\
                         f'\n\tesac;\n'
 
-    def __add_turn_transition(self):
+    def add_turn_transition(self):
         self.content += f'\n\tnext(turn) := case'\
             f'\n\t\tdone : none;'
 
@@ -189,7 +191,7 @@ class SMVWriter:
 
         self.content += f'\n\tesac;\n'
 
-    def __add_possible_transition(self):
+    def add_possible_transition(self):
         self.content += f'\n\tnext(possible_up) := case'
         for i in range(self.n):
             for j in range(self.m):
@@ -238,37 +240,28 @@ class SMVWriter:
         self.content += f'\n\t\tTRUE : FALSE;'\
                         f'\n\tesac;\n'
 
-    def __add_var(self):
+    def add_var(self):
         self.content += f'\nVAR'\
                         f'\n\tturn: {{u, d, r, l, none}};'\
                         f'\n\tpossible_up: boolean;'\
                         f'\n\tpossible_down: boolean;'\
                         f'\n\tpossible_right: boolean;'\
-                        f'\n\tpossible_left: boolean;'
-        self.content += '\n\ty: {'
-        for i in range(self.n):
-            if i:
-                self.content += f', {i}'
-            else:
-                self.content += f'{i}'
-        self.content += '};'
-        self.content += '\n\tx: {'
-        for i in range(self.m):
-            if i:
-                self.content += f', {i}'
-            else:
-                self.content += f'{i}'
-        self.content += '};'
+                        f'\n\tpossible_left: boolean;'\
+                        f'\n\ty: 0..{self.n - 1};'\
+                        f'\n\tx: 0..{self.m - 1};'
 
         for i in range(self.n):
             for j in range(self.m):
                 self.content += f'\n\tv_{i}{j}: {{shtrudel, plus, dollar, star, solamit, dot, minus}};'
         self.content += '\n'
 
-    def __add_define(self):
+    def add_define(self):
         self.content += f'\nDEFINE'\
                         f'\n\tn := {self.n}; m := {self.m};'
 
+        self.add_done()
+
+    def add_done(self):
         self.content += f'\n\tdone :='
         for i in range(self.n):
             for j in range(self.m):
@@ -278,7 +271,7 @@ class SMVWriter:
                 else:
                     self.content += ';\n'
 
-    def __get_coords(self):
+    def get_coords(self):
         for y, row in enumerate(self.board):
             for x, col in enumerate(row):
                 if col in ["@", "+"]:
@@ -286,13 +279,13 @@ class SMVWriter:
 
         return (-1, -1)
 
-    def __get_specs(self, path):
+    def get_specs(self, path):
         with open(path, 'r') as f:
             specs = f.readlines()
 
         return specs
 
-    def __get_board(self, path):
+    def get_board(self, path):
         board = []
         with open(path, 'r') as f:
             for line in f.readlines():
@@ -311,5 +304,5 @@ def main():
     writer.export_smv('sokoban.smv')
 
 
-if __name__ == '__main__':
+if __name__ == 'main':
     main()

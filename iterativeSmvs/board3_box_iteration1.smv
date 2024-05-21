@@ -2,7 +2,7 @@ MODULE main
 
 DEFINE
 	n := 7; m := 7;
-	done := (v_00 != dollar) & (v_01 != dollar) & (v_02 != dollar) & (v_03 != dollar) & (v_04 != dollar) & (v_05 != dollar) & (v_06 != dollar) & (v_10 != dollar) & (v_11 != dollar) & (v_12 != dollar) & (v_13 != dollar) & (v_14 != dollar) & (v_15 != dollar) & (v_16 != dollar) & (v_20 != dollar) & (v_21 != dollar) & (v_22 != dollar) & (v_23 != dollar) & (v_24 != dollar) & (v_25 != dollar) & (v_26 != dollar) & (v_30 != dollar) & (v_31 != dollar) & (v_32 != dollar) & (v_33 != dollar) & (v_34 != dollar) & (v_35 != dollar) & (v_36 != dollar) & (v_40 != dollar) & (v_41 != dollar) & (v_42 != dollar) & (v_43 != dollar) & (v_44 != dollar) & (v_45 != dollar) & (v_46 != dollar) & (v_50 != dollar) & (v_51 != dollar) & (v_52 != dollar) & (v_53 != dollar) & (v_54 != dollar) & (v_55 != dollar) & (v_56 != dollar) & (v_60 != dollar) & (v_61 != dollar) & (v_62 != dollar) & (v_63 != dollar) & (v_64 != dollar) & (v_65 != dollar) & (v_66 != dollar);
+	done :=((box_x = 0) & (box_y = 0) & (v_00 = star)) |((box_x = 1) & (box_y = 0) & (v_01 = star)) |((box_x = 2) & (box_y = 0) & (v_02 = star)) |((box_x = 3) & (box_y = 0) & (v_03 = star)) |((box_x = 4) & (box_y = 0) & (v_04 = star)) |((box_x = 5) & (box_y = 0) & (v_05 = star)) |((box_x = 6) & (box_y = 0) & (v_06 = star)) |((box_x = 0) & (box_y = 1) & (v_10 = star)) |((box_x = 1) & (box_y = 1) & (v_11 = star)) |((box_x = 2) & (box_y = 1) & (v_12 = star)) |((box_x = 3) & (box_y = 1) & (v_13 = star)) |((box_x = 4) & (box_y = 1) & (v_14 = star)) |((box_x = 5) & (box_y = 1) & (v_15 = star)) |((box_x = 6) & (box_y = 1) & (v_16 = star)) |((box_x = 0) & (box_y = 2) & (v_20 = star)) |((box_x = 1) & (box_y = 2) & (v_21 = star)) |((box_x = 2) & (box_y = 2) & (v_22 = star)) |((box_x = 3) & (box_y = 2) & (v_23 = star)) |((box_x = 4) & (box_y = 2) & (v_24 = star)) |((box_x = 5) & (box_y = 2) & (v_25 = star)) |((box_x = 6) & (box_y = 2) & (v_26 = star)) |((box_x = 0) & (box_y = 3) & (v_30 = star)) |((box_x = 1) & (box_y = 3) & (v_31 = star)) |((box_x = 2) & (box_y = 3) & (v_32 = star)) |((box_x = 3) & (box_y = 3) & (v_33 = star)) |((box_x = 4) & (box_y = 3) & (v_34 = star)) |((box_x = 5) & (box_y = 3) & (v_35 = star)) |((box_x = 6) & (box_y = 3) & (v_36 = star)) |((box_x = 0) & (box_y = 4) & (v_40 = star)) |((box_x = 1) & (box_y = 4) & (v_41 = star)) |((box_x = 2) & (box_y = 4) & (v_42 = star)) |((box_x = 3) & (box_y = 4) & (v_43 = star)) |((box_x = 4) & (box_y = 4) & (v_44 = star)) |((box_x = 5) & (box_y = 4) & (v_45 = star)) |((box_x = 6) & (box_y = 4) & (v_46 = star)) |((box_x = 0) & (box_y = 5) & (v_50 = star)) |((box_x = 1) & (box_y = 5) & (v_51 = star)) |((box_x = 2) & (box_y = 5) & (v_52 = star)) |((box_x = 3) & (box_y = 5) & (v_53 = star)) |((box_x = 4) & (box_y = 5) & (v_54 = star)) |((box_x = 5) & (box_y = 5) & (v_55 = star)) |((box_x = 6) & (box_y = 5) & (v_56 = star)) |((box_x = 0) & (box_y = 6) & (v_60 = star)) |((box_x = 1) & (box_y = 6) & (v_61 = star)) |((box_x = 2) & (box_y = 6) & (v_62 = star)) |((box_x = 3) & (box_y = 6) & (v_63 = star)) |((box_x = 4) & (box_y = 6) & (v_64 = star)) |((box_x = 5) & (box_y = 6) & (v_65 = star)) |((box_x = 6) & (box_y = 6) & (v_66 = star));
 
 VAR
 	turn: {u, d, r, l, none};
@@ -62,6 +62,8 @@ VAR
 	v_65: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_66: {shtrudel, plus, dollar, star, solamit, dot, minus};
 
+	box_y: 0..6;
+	box_x: 0..6;
 ASSIGN
 	init(v_00) := solamit;
 	init(v_01) := solamit;
@@ -121,6 +123,8 @@ ASSIGN
 	init(x) := 1;
 	init(y) := 1;
 
+	init(box_y) := 2;
+	init(box_x) := 4;
 	next(possible_up) := case
 		(y = 0) & (x = 0) : FALSE;
 		(y = 0) & (x = 1) : FALSE;
@@ -1273,6 +1277,18 @@ ASSIGN
 		(y = 4) & (x = 6) & ((v_56 = star) | (v_56 = dollar)) & (v_66 = minus) & (next(turn) = d) : dollar;
 		(y = 4) & (x = 6) & ((v_56 = star) | (v_56 = dollar)) & (v_66 = dot) & (next(turn) = d) : star;
 		TRUE : v_66;
+	esac;
+
+	next(box_x) := case
+		(next(turn) = r) & (x = box_x - 1) & (box_x < m - 1) : box_x + 1;
+		(next(turn) = l) & (x = box_x + 1) & (box_x > 0) : box_x - 1;
+		TRUE : box_x;
+	esac;
+
+	next(box_y) := case
+		(next(turn) = u) & (y = box_y + 1) & (box_y > 0) : box_y - 1;
+		(next(turn) = d) & (y = box_y - 1) & (box_y < n - 1) : box_y + 1;
+		TRUE : box_y;
 	esac;
 
 LTLSPEC !F(done)

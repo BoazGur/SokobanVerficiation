@@ -1,1 +1,1 @@
-time in seconds: 2.6568379402160645
+time in seconds: 2.8886947631835938

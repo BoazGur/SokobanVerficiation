@@ -1,4 +1,5 @@
 from smv_writer import SMVWriter
+from smv_writer_iterative import SMVWriterIterative
 import time
 import subprocess
 import os
@@ -27,38 +28,29 @@ def main():
         # run_SAT('smvs/' + path[:-4] + '.smv')
         # run_BDD('smvs/' + path[:-4] + '.smv')
         run_iterative(writers[i].board, path[:-4])
+        # if path[:-4] == 'board7':
+        #     run_iterative(writers[i].board, path[:-4])
 
 def run_iterative(board, _id):
-    box_indices = []
-
-    for i in range(len(board)):
-        for j in range(len(board[0])):
-            if board[i][j] == '$':
-                box_indices.append((i, j))
-
-    start = time.time()
-
-    partial_board = board.copy()
+    board_copy = board.copy()
     total_time = 0
+    
+    i = 0
+    while any('$' in row for row in board_copy):
+        # for j, idx in enumerate(box_indices):
+        #     # replace all boxes to wall except one box
+        #     if box_indices[j]:
+        #         if i != j:
+        #             partial_board[idx[0]][idx[1]] = '#'
+        #         else:
+        #             partial_board[idx[0]][idx[1]] = '$'
 
-    n_boxes = len(box_indices)
+        path = 'iterativeSmvs/' + _id + '_box_iteration' + str(i + 1) + '.smv'
+        i += 1
 
-    for i in range(n_boxes):
-        for j, idx in enumerate(box_indices):
-            # replace all boxes to wall except one box
-            if box_indices[j]:
-                if i != j:
-                    partial_board[idx[0]][idx[1]] = '#'
-                else:
-                    partial_board[idx[0]][idx[1]] = '$'
-
-        box_indices[i] = None
-
-        path = 'iterativeSmvs/' + _id + '_box_number' + str(i + 1) + '.smv'
-
-        writer = SMVWriter(specs_path='specs.txt', board=partial_board)
-        writer.write_smv()
-        writer.export_smv(path)
+        writer_iterative = SMVWriterIterative(specs_path='specs.txt', board=board_copy)
+        writer_iterative.write_smv()
+        writer_iterative.export_smv(path)
 
         start = time.time()
 
@@ -85,11 +77,10 @@ def run_iterative(board, _id):
 
         print(f"Output saved to outputIterative/{output_filename}")
 
-        partial_board = regex_proccessing(stdout, len(writer.board), len(writer.board[0]))
-        if partial_board is None:
+        board_copy = regex_proccessing(stdout, len(writer_iterative.board), len(writer_iterative.board[0]))
+        if board_copy is None:
             print(f'Board {_id} not winnable')
             break
-
 
     with open('outputIterative/' + _id + '_time.txt', 'w') as f:
         f.write('time in seconds: ' + str(total_time))

@@ -2,7 +2,7 @@ MODULE main
 
 DEFINE
 	n := 3; m := 5;
-	done := (v_00 != dollar) & (v_01 != dollar) & (v_02 != dollar) & (v_03 != dollar) & (v_04 != dollar) & (v_10 != dollar) & (v_11 != dollar) & (v_12 != dollar) & (v_13 != dollar) & (v_14 != dollar) & (v_20 != dollar) & (v_21 != dollar) & (v_22 != dollar) & (v_23 != dollar) & (v_24 != dollar);
+	done :=((box_x = 0) & (box_y = 0) & (v_00 = star)) |((box_x = 1) & (box_y = 0) & (v_01 = star)) |((box_x = 2) & (box_y = 0) & (v_02 = star)) |((box_x = 3) & (box_y = 0) & (v_03 = star)) |((box_x = 4) & (box_y = 0) & (v_04 = star)) |((box_x = 0) & (box_y = 1) & (v_10 = star)) |((box_x = 1) & (box_y = 1) & (v_11 = star)) |((box_x = 2) & (box_y = 1) & (v_12 = star)) |((box_x = 3) & (box_y = 1) & (v_13 = star)) |((box_x = 4) & (box_y = 1) & (v_14 = star)) |((box_x = 0) & (box_y = 2) & (v_20 = star)) |((box_x = 1) & (box_y = 2) & (v_21 = star)) |((box_x = 2) & (box_y = 2) & (v_22 = star)) |((box_x = 3) & (box_y = 2) & (v_23 = star)) |((box_x = 4) & (box_y = 2) & (v_24 = star));
 
 VAR
 	turn: {u, d, r, l, none};
@@ -28,6 +28,8 @@ VAR
 	v_23: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_24: {shtrudel, plus, dollar, star, solamit, dot, minus};
 
+	box_y: 0..2;
+	box_x: 0..4;
 ASSIGN
 	init(v_00) := solamit;
 	init(v_01) := solamit;
@@ -53,6 +55,8 @@ ASSIGN
 	init(x) := 1;
 	init(y) := 1;
 
+	init(box_y) := 1;
+	init(box_x) := 2;
 	next(possible_up) := case
 		(y = 0) & (x = 0) : FALSE;
 		(y = 0) & (x = 1) : FALSE;
@@ -393,6 +397,18 @@ ASSIGN
 		(y = 0) & (x = 4) & ((v_14 = star) | (v_14 = dollar)) & (v_24 = minus) & (next(turn) = d) : dollar;
 		(y = 0) & (x = 4) & ((v_14 = star) | (v_14 = dollar)) & (v_24 = dot) & (next(turn) = d) : star;
 		TRUE : v_24;
+	esac;
+
+	next(box_x) := case
+		(next(turn) = r) & (x = box_x - 1) & (box_x < m - 1) : box_x + 1;
+		(next(turn) = l) & (x = box_x + 1) & (box_x > 0) : box_x - 1;
+		TRUE : box_x;
+	esac;
+
+	next(box_y) := case
+		(next(turn) = u) & (y = box_y + 1) & (box_y > 0) : box_y - 1;
+		(next(turn) = d) & (y = box_y - 1) & (box_y < n - 1) : box_y + 1;
+		TRUE : box_y;
 	esac;
 
 LTLSPEC !F(done)

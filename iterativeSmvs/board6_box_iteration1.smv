@@ -1,8 +1,8 @@
 MODULE main
 
 DEFINE
-	n := 7; m := 7;
-	done := (v_00 != dollar) & (v_01 != dollar) & (v_02 != dollar) & (v_03 != dollar) & (v_04 != dollar) & (v_05 != dollar) & (v_06 != dollar) & (v_10 != dollar) & (v_11 != dollar) & (v_12 != dollar) & (v_13 != dollar) & (v_14 != dollar) & (v_15 != dollar) & (v_16 != dollar) & (v_20 != dollar) & (v_21 != dollar) & (v_22 != dollar) & (v_23 != dollar) & (v_24 != dollar) & (v_25 != dollar) & (v_26 != dollar) & (v_30 != dollar) & (v_31 != dollar) & (v_32 != dollar) & (v_33 != dollar) & (v_34 != dollar) & (v_35 != dollar) & (v_36 != dollar) & (v_40 != dollar) & (v_41 != dollar) & (v_42 != dollar) & (v_43 != dollar) & (v_44 != dollar) & (v_45 != dollar) & (v_46 != dollar) & (v_50 != dollar) & (v_51 != dollar) & (v_52 != dollar) & (v_53 != dollar) & (v_54 != dollar) & (v_55 != dollar) & (v_56 != dollar) & (v_60 != dollar) & (v_61 != dollar) & (v_62 != dollar) & (v_63 != dollar) & (v_64 != dollar) & (v_65 != dollar) & (v_66 != dollar);
+	n := 7; m := 8;
+	done :=((box_x = 0) & (box_y = 0) & (v_00 = star)) |((box_x = 1) & (box_y = 0) & (v_01 = star)) |((box_x = 2) & (box_y = 0) & (v_02 = star)) |((box_x = 3) & (box_y = 0) & (v_03 = star)) |((box_x = 4) & (box_y = 0) & (v_04 = star)) |((box_x = 5) & (box_y = 0) & (v_05 = star)) |((box_x = 6) & (box_y = 0) & (v_06 = star)) |((box_x = 7) & (box_y = 0) & (v_07 = star)) |((box_x = 0) & (box_y = 1) & (v_10 = star)) |((box_x = 1) & (box_y = 1) & (v_11 = star)) |((box_x = 2) & (box_y = 1) & (v_12 = star)) |((box_x = 3) & (box_y = 1) & (v_13 = star)) |((box_x = 4) & (box_y = 1) & (v_14 = star)) |((box_x = 5) & (box_y = 1) & (v_15 = star)) |((box_x = 6) & (box_y = 1) & (v_16 = star)) |((box_x = 7) & (box_y = 1) & (v_17 = star)) |((box_x = 0) & (box_y = 2) & (v_20 = star)) |((box_x = 1) & (box_y = 2) & (v_21 = star)) |((box_x = 2) & (box_y = 2) & (v_22 = star)) |((box_x = 3) & (box_y = 2) & (v_23 = star)) |((box_x = 4) & (box_y = 2) & (v_24 = star)) |((box_x = 5) & (box_y = 2) & (v_25 = star)) |((box_x = 6) & (box_y = 2) & (v_26 = star)) |((box_x = 7) & (box_y = 2) & (v_27 = star)) |((box_x = 0) & (box_y = 3) & (v_30 = star)) |((box_x = 1) & (box_y = 3) & (v_31 = star)) |((box_x = 2) & (box_y = 3) & (v_32 = star)) |((box_x = 3) & (box_y = 3) & (v_33 = star)) |((box_x = 4) & (box_y = 3) & (v_34 = star)) |((box_x = 5) & (box_y = 3) & (v_35 = star)) |((box_x = 6) & (box_y = 3) & (v_36 = star)) |((box_x = 7) & (box_y = 3) & (v_37 = star)) |((box_x = 0) & (box_y = 4) & (v_40 = star)) |((box_x = 1) & (box_y = 4) & (v_41 = star)) |((box_x = 2) & (box_y = 4) & (v_42 = star)) |((box_x = 3) & (box_y = 4) & (v_43 = star)) |((box_x = 4) & (box_y = 4) & (v_44 = star)) |((box_x = 5) & (box_y = 4) & (v_45 = star)) |((box_x = 6) & (box_y = 4) & (v_46 = star)) |((box_x = 7) & (box_y = 4) & (v_47 = star)) |((box_x = 0) & (box_y = 5) & (v_50 = star)) |((box_x = 1) & (box_y = 5) & (v_51 = star)) |((box_x = 2) & (box_y = 5) & (v_52 = star)) |((box_x = 3) & (box_y = 5) & (v_53 = star)) |((box_x = 4) & (box_y = 5) & (v_54 = star)) |((box_x = 5) & (box_y = 5) & (v_55 = star)) |((box_x = 6) & (box_y = 5) & (v_56 = star)) |((box_x = 7) & (box_y = 5) & (v_57 = star)) |((box_x = 0) & (box_y = 6) & (v_60 = star)) |((box_x = 1) & (box_y = 6) & (v_61 = star)) |((box_x = 2) & (box_y = 6) & (v_62 = star)) |((box_x = 3) & (box_y = 6) & (v_63 = star)) |((box_x = 4) & (box_y = 6) & (v_64 = star)) |((box_x = 5) & (box_y = 6) & (v_65 = star)) |((box_x = 6) & (box_y = 6) & (v_66 = star)) |((box_x = 7) & (box_y = 6) & (v_67 = star));
 
 VAR
 	turn: {u, d, r, l, none};
@@ -11,7 +11,7 @@ VAR
 	possible_right: boolean;
 	possible_left: boolean;
 	y: 0..6;
-	x: 0..6;
+	x: 0..7;
 	v_00: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_01: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_02: {shtrudel, plus, dollar, star, solamit, dot, minus};
@@ -19,6 +19,7 @@ VAR
 	v_04: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_05: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_06: {shtrudel, plus, dollar, star, solamit, dot, minus};
+	v_07: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_10: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_11: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_12: {shtrudel, plus, dollar, star, solamit, dot, minus};
@@ -26,6 +27,7 @@ VAR
 	v_14: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_15: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_16: {shtrudel, plus, dollar, star, solamit, dot, minus};
+	v_17: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_20: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_21: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_22: {shtrudel, plus, dollar, star, solamit, dot, minus};
@@ -33,6 +35,7 @@ VAR
 	v_24: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_25: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_26: {shtrudel, plus, dollar, star, solamit, dot, minus};
+	v_27: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_30: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_31: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_32: {shtrudel, plus, dollar, star, solamit, dot, minus};
@@ -40,6 +43,7 @@ VAR
 	v_34: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_35: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_36: {shtrudel, plus, dollar, star, solamit, dot, minus};
+	v_37: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_40: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_41: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_42: {shtrudel, plus, dollar, star, solamit, dot, minus};
@@ -47,6 +51,7 @@ VAR
 	v_44: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_45: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_46: {shtrudel, plus, dollar, star, solamit, dot, minus};
+	v_47: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_50: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_51: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_52: {shtrudel, plus, dollar, star, solamit, dot, minus};
@@ -54,6 +59,7 @@ VAR
 	v_54: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_55: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_56: {shtrudel, plus, dollar, star, solamit, dot, minus};
+	v_57: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_60: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_61: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_62: {shtrudel, plus, dollar, star, solamit, dot, minus};
@@ -61,7 +67,10 @@ VAR
 	v_64: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_65: {shtrudel, plus, dollar, star, solamit, dot, minus};
 	v_66: {shtrudel, plus, dollar, star, solamit, dot, minus};
+	v_67: {shtrudel, plus, dollar, star, solamit, dot, minus};
 
+	box_y: 0..6;
+	box_x: 0..7;
 ASSIGN
 	init(v_00) := solamit;
 	init(v_01) := solamit;
@@ -70,41 +79,47 @@ ASSIGN
 	init(v_04) := solamit;
 	init(v_05) := solamit;
 	init(v_06) := solamit;
+	init(v_07) := solamit;
 	init(v_10) := solamit;
 	init(v_11) := shtrudel;
 	init(v_12) := minus;
 	init(v_13) := minus;
 	init(v_14) := minus;
 	init(v_15) := minus;
-	init(v_16) := solamit;
+	init(v_16) := minus;
+	init(v_17) := solamit;
 	init(v_20) := solamit;
 	init(v_21) := minus;
 	init(v_22) := minus;
-	init(v_23) := dot;
-	init(v_24) := dollar;
-	init(v_25) := minus;
+	init(v_23) := minus;
+	init(v_24) := minus;
+	init(v_25) := solamit;
 	init(v_26) := solamit;
+	init(v_27) := solamit;
 	init(v_30) := solamit;
 	init(v_31) := minus;
-	init(v_32) := minus;
+	init(v_32) := dollar;
 	init(v_33) := minus;
 	init(v_34) := solamit;
-	init(v_35) := solamit;
-	init(v_36) := solamit;
+	init(v_35) := minus;
+	init(v_36) := minus;
+	init(v_37) := solamit;
 	init(v_40) := solamit;
 	init(v_41) := minus;
 	init(v_42) := minus;
-	init(v_43) := dollar;
-	init(v_44) := minus;
+	init(v_43) := minus;
+	init(v_44) := solamit;
 	init(v_45) := minus;
-	init(v_46) := solamit;
+	init(v_46) := dollar;
+	init(v_47) := solamit;
 	init(v_50) := solamit;
 	init(v_51) := minus;
-	init(v_52) := minus;
+	init(v_52) := dot;
 	init(v_53) := minus;
 	init(v_54) := solamit;
-	init(v_55) := dot;
-	init(v_56) := solamit;
+	init(v_55) := minus;
+	init(v_56) := dot;
+	init(v_57) := solamit;
 	init(v_60) := solamit;
 	init(v_61) := solamit;
 	init(v_62) := solamit;
@@ -112,6 +127,7 @@ ASSIGN
 	init(v_64) := solamit;
 	init(v_65) := solamit;
 	init(v_66) := solamit;
+	init(v_67) := solamit;
 
 	init(possible_up) := !(v_01 = solamit);
 	init(possible_down) := !((v_21 = solamit) | (((v_21 = dollar) | (v_21 = dollar)) & ((v_31 = dollar) | (v_31 = dollar) | (v_31 = solamit))));
@@ -121,6 +137,8 @@ ASSIGN
 	init(x) := 1;
 	init(y) := 1;
 
+	init(box_y) := 3;
+	init(box_x) := 2;
 	next(possible_up) := case
 		(y = 0) & (x = 0) : FALSE;
 		(y = 0) & (x = 1) : FALSE;
@@ -129,6 +147,7 @@ ASSIGN
 		(y = 0) & (x = 4) : FALSE;
 		(y = 0) & (x = 5) : FALSE;
 		(y = 0) & (x = 6) : FALSE;
+		(y = 0) & (x = 7) : FALSE;
 		(y = 1) & (x = 0) : !((v_00 = solamit));
 		(y = 1) & (x = 1) : !((v_01 = solamit));
 		(y = 1) & (x = 2) : !((v_02 = solamit));
@@ -136,6 +155,7 @@ ASSIGN
 		(y = 1) & (x = 4) : !((v_04 = solamit));
 		(y = 1) & (x = 5) : !((v_05 = solamit));
 		(y = 1) & (x = 6) : !((v_06 = solamit));
+		(y = 1) & (x = 7) : !((v_07 = solamit));
 		(y = 2) & (x = 0) : !((v_10 = solamit) | (((v_10 = dollar) | (v_10 = star)) & ((v_00 = dollar) | (v_00 = star) | (v_00 = solamit))));
 		(y = 2) & (x = 1) : !((v_11 = solamit) | (((v_11 = dollar) | (v_11 = star)) & ((v_01 = dollar) | (v_01 = star) | (v_01 = solamit))));
 		(y = 2) & (x = 2) : !((v_12 = solamit) | (((v_12 = dollar) | (v_12 = star)) & ((v_02 = dollar) | (v_02 = star) | (v_02 = solamit))));
@@ -143,6 +163,7 @@ ASSIGN
 		(y = 2) & (x = 4) : !((v_14 = solamit) | (((v_14 = dollar) | (v_14 = star)) & ((v_04 = dollar) | (v_04 = star) | (v_04 = solamit))));
 		(y = 2) & (x = 5) : !((v_15 = solamit) | (((v_15 = dollar) | (v_15 = star)) & ((v_05 = dollar) | (v_05 = star) | (v_05 = solamit))));
 		(y = 2) & (x = 6) : !((v_16 = solamit) | (((v_16 = dollar) | (v_16 = star)) & ((v_06 = dollar) | (v_06 = star) | (v_06 = solamit))));
+		(y = 2) & (x = 7) : !((v_17 = solamit) | (((v_17 = dollar) | (v_17 = star)) & ((v_07 = dollar) | (v_07 = star) | (v_07 = solamit))));
 		(y = 3) & (x = 0) : !((v_20 = solamit) | (((v_20 = dollar) | (v_20 = star)) & ((v_10 = dollar) | (v_10 = star) | (v_10 = solamit))));
 		(y = 3) & (x = 1) : !((v_21 = solamit) | (((v_21 = dollar) | (v_21 = star)) & ((v_11 = dollar) | (v_11 = star) | (v_11 = solamit))));
 		(y = 3) & (x = 2) : !((v_22 = solamit) | (((v_22 = dollar) | (v_22 = star)) & ((v_12 = dollar) | (v_12 = star) | (v_12 = solamit))));
@@ -150,6 +171,7 @@ ASSIGN
 		(y = 3) & (x = 4) : !((v_24 = solamit) | (((v_24 = dollar) | (v_24 = star)) & ((v_14 = dollar) | (v_14 = star) | (v_14 = solamit))));
 		(y = 3) & (x = 5) : !((v_25 = solamit) | (((v_25 = dollar) | (v_25 = star)) & ((v_15 = dollar) | (v_15 = star) | (v_15 = solamit))));
 		(y = 3) & (x = 6) : !((v_26 = solamit) | (((v_26 = dollar) | (v_26 = star)) & ((v_16 = dollar) | (v_16 = star) | (v_16 = solamit))));
+		(y = 3) & (x = 7) : !((v_27 = solamit) | (((v_27 = dollar) | (v_27 = star)) & ((v_17 = dollar) | (v_17 = star) | (v_17 = solamit))));
 		(y = 4) & (x = 0) : !((v_30 = solamit) | (((v_30 = dollar) | (v_30 = star)) & ((v_20 = dollar) | (v_20 = star) | (v_20 = solamit))));
 		(y = 4) & (x = 1) : !((v_31 = solamit) | (((v_31 = dollar) | (v_31 = star)) & ((v_21 = dollar) | (v_21 = star) | (v_21 = solamit))));
 		(y = 4) & (x = 2) : !((v_32 = solamit) | (((v_32 = dollar) | (v_32 = star)) & ((v_22 = dollar) | (v_22 = star) | (v_22 = solamit))));
@@ -157,6 +179,7 @@ ASSIGN
 		(y = 4) & (x = 4) : !((v_34 = solamit) | (((v_34 = dollar) | (v_34 = star)) & ((v_24 = dollar) | (v_24 = star) | (v_24 = solamit))));
 		(y = 4) & (x = 5) : !((v_35 = solamit) | (((v_35 = dollar) | (v_35 = star)) & ((v_25 = dollar) | (v_25 = star) | (v_25 = solamit))));
 		(y = 4) & (x = 6) : !((v_36 = solamit) | (((v_36 = dollar) | (v_36 = star)) & ((v_26 = dollar) | (v_26 = star) | (v_26 = solamit))));
+		(y = 4) & (x = 7) : !((v_37 = solamit) | (((v_37 = dollar) | (v_37 = star)) & ((v_27 = dollar) | (v_27 = star) | (v_27 = solamit))));
 		(y = 5) & (x = 0) : !((v_40 = solamit) | (((v_40 = dollar) | (v_40 = star)) & ((v_30 = dollar) | (v_30 = star) | (v_30 = solamit))));
 		(y = 5) & (x = 1) : !((v_41 = solamit) | (((v_41 = dollar) | (v_41 = star)) & ((v_31 = dollar) | (v_31 = star) | (v_31 = solamit))));
 		(y = 5) & (x = 2) : !((v_42 = solamit) | (((v_42 = dollar) | (v_42 = star)) & ((v_32 = dollar) | (v_32 = star) | (v_32 = solamit))));
@@ -164,6 +187,7 @@ ASSIGN
 		(y = 5) & (x = 4) : !((v_44 = solamit) | (((v_44 = dollar) | (v_44 = star)) & ((v_34 = dollar) | (v_34 = star) | (v_34 = solamit))));
 		(y = 5) & (x = 5) : !((v_45 = solamit) | (((v_45 = dollar) | (v_45 = star)) & ((v_35 = dollar) | (v_35 = star) | (v_35 = solamit))));
 		(y = 5) & (x = 6) : !((v_46 = solamit) | (((v_46 = dollar) | (v_46 = star)) & ((v_36 = dollar) | (v_36 = star) | (v_36 = solamit))));
+		(y = 5) & (x = 7) : !((v_47 = solamit) | (((v_47 = dollar) | (v_47 = star)) & ((v_37 = dollar) | (v_37 = star) | (v_37 = solamit))));
 		(y = 6) & (x = 0) : !((v_50 = solamit) | (((v_50 = dollar) | (v_50 = star)) & ((v_40 = dollar) | (v_40 = star) | (v_40 = solamit))));
 		(y = 6) & (x = 1) : !((v_51 = solamit) | (((v_51 = dollar) | (v_51 = star)) & ((v_41 = dollar) | (v_41 = star) | (v_41 = solamit))));
 		(y = 6) & (x = 2) : !((v_52 = solamit) | (((v_52 = dollar) | (v_52 = star)) & ((v_42 = dollar) | (v_42 = star) | (v_42 = solamit))));
@@ -171,6 +195,7 @@ ASSIGN
 		(y = 6) & (x = 4) : !((v_54 = solamit) | (((v_54 = dollar) | (v_54 = star)) & ((v_44 = dollar) | (v_44 = star) | (v_44 = solamit))));
 		(y = 6) & (x = 5) : !((v_55 = solamit) | (((v_55 = dollar) | (v_55 = star)) & ((v_45 = dollar) | (v_45 = star) | (v_45 = solamit))));
 		(y = 6) & (x = 6) : !((v_56 = solamit) | (((v_56 = dollar) | (v_56 = star)) & ((v_46 = dollar) | (v_46 = star) | (v_46 = solamit))));
+		(y = 6) & (x = 7) : !((v_57 = solamit) | (((v_57 = dollar) | (v_57 = star)) & ((v_47 = dollar) | (v_47 = star) | (v_47 = solamit))));
 		TRUE : FALSE;
 	esac;
 
@@ -182,6 +207,7 @@ ASSIGN
 		(y = 0) & (x = 4) : !((v_14 = solamit) | (((v_14 = dollar) | (v_14 = star)) & ((v_24 = dollar) | (v_24 = star) | (v_24 = solamit))));
 		(y = 0) & (x = 5) : !((v_15 = solamit) | (((v_15 = dollar) | (v_15 = star)) & ((v_25 = dollar) | (v_25 = star) | (v_25 = solamit))));
 		(y = 0) & (x = 6) : !((v_16 = solamit) | (((v_16 = dollar) | (v_16 = star)) & ((v_26 = dollar) | (v_26 = star) | (v_26 = solamit))));
+		(y = 0) & (x = 7) : !((v_17 = solamit) | (((v_17 = dollar) | (v_17 = star)) & ((v_27 = dollar) | (v_27 = star) | (v_27 = solamit))));
 		(y = 1) & (x = 0) : !((v_20 = solamit) | (((v_20 = dollar) | (v_20 = star)) & ((v_30 = dollar) | (v_30 = star) | (v_30 = solamit))));
 		(y = 1) & (x = 1) : !((v_21 = solamit) | (((v_21 = dollar) | (v_21 = star)) & ((v_31 = dollar) | (v_31 = star) | (v_31 = solamit))));
 		(y = 1) & (x = 2) : !((v_22 = solamit) | (((v_22 = dollar) | (v_22 = star)) & ((v_32 = dollar) | (v_32 = star) | (v_32 = solamit))));
@@ -189,6 +215,7 @@ ASSIGN
 		(y = 1) & (x = 4) : !((v_24 = solamit) | (((v_24 = dollar) | (v_24 = star)) & ((v_34 = dollar) | (v_34 = star) | (v_34 = solamit))));
 		(y = 1) & (x = 5) : !((v_25 = solamit) | (((v_25 = dollar) | (v_25 = star)) & ((v_35 = dollar) | (v_35 = star) | (v_35 = solamit))));
 		(y = 1) & (x = 6) : !((v_26 = solamit) | (((v_26 = dollar) | (v_26 = star)) & ((v_36 = dollar) | (v_36 = star) | (v_36 = solamit))));
+		(y = 1) & (x = 7) : !((v_27 = solamit) | (((v_27 = dollar) | (v_27 = star)) & ((v_37 = dollar) | (v_37 = star) | (v_37 = solamit))));
 		(y = 2) & (x = 0) : !((v_30 = solamit) | (((v_30 = dollar) | (v_30 = star)) & ((v_40 = dollar) | (v_40 = star) | (v_40 = solamit))));
 		(y = 2) & (x = 1) : !((v_31 = solamit) | (((v_31 = dollar) | (v_31 = star)) & ((v_41 = dollar) | (v_41 = star) | (v_41 = solamit))));
 		(y = 2) & (x = 2) : !((v_32 = solamit) | (((v_32 = dollar) | (v_32 = star)) & ((v_42 = dollar) | (v_42 = star) | (v_42 = solamit))));
@@ -196,6 +223,7 @@ ASSIGN
 		(y = 2) & (x = 4) : !((v_34 = solamit) | (((v_34 = dollar) | (v_34 = star)) & ((v_44 = dollar) | (v_44 = star) | (v_44 = solamit))));
 		(y = 2) & (x = 5) : !((v_35 = solamit) | (((v_35 = dollar) | (v_35 = star)) & ((v_45 = dollar) | (v_45 = star) | (v_45 = solamit))));
 		(y = 2) & (x = 6) : !((v_36 = solamit) | (((v_36 = dollar) | (v_36 = star)) & ((v_46 = dollar) | (v_46 = star) | (v_46 = solamit))));
+		(y = 2) & (x = 7) : !((v_37 = solamit) | (((v_37 = dollar) | (v_37 = star)) & ((v_47 = dollar) | (v_47 = star) | (v_47 = solamit))));
 		(y = 3) & (x = 0) : !((v_40 = solamit) | (((v_40 = dollar) | (v_40 = star)) & ((v_50 = dollar) | (v_50 = star) | (v_50 = solamit))));
 		(y = 3) & (x = 1) : !((v_41 = solamit) | (((v_41 = dollar) | (v_41 = star)) & ((v_51 = dollar) | (v_51 = star) | (v_51 = solamit))));
 		(y = 3) & (x = 2) : !((v_42 = solamit) | (((v_42 = dollar) | (v_42 = star)) & ((v_52 = dollar) | (v_52 = star) | (v_52 = solamit))));
@@ -203,6 +231,7 @@ ASSIGN
 		(y = 3) & (x = 4) : !((v_44 = solamit) | (((v_44 = dollar) | (v_44 = star)) & ((v_54 = dollar) | (v_54 = star) | (v_54 = solamit))));
 		(y = 3) & (x = 5) : !((v_45 = solamit) | (((v_45 = dollar) | (v_45 = star)) & ((v_55 = dollar) | (v_55 = star) | (v_55 = solamit))));
 		(y = 3) & (x = 6) : !((v_46 = solamit) | (((v_46 = dollar) | (v_46 = star)) & ((v_56 = dollar) | (v_56 = star) | (v_56 = solamit))));
+		(y = 3) & (x = 7) : !((v_47 = solamit) | (((v_47 = dollar) | (v_47 = star)) & ((v_57 = dollar) | (v_57 = star) | (v_57 = solamit))));
 		(y = 4) & (x = 0) : !((v_50 = solamit) | (((v_50 = dollar) | (v_50 = star)) & ((v_60 = dollar) | (v_60 = star) | (v_60 = solamit))));
 		(y = 4) & (x = 1) : !((v_51 = solamit) | (((v_51 = dollar) | (v_51 = star)) & ((v_61 = dollar) | (v_61 = star) | (v_61 = solamit))));
 		(y = 4) & (x = 2) : !((v_52 = solamit) | (((v_52 = dollar) | (v_52 = star)) & ((v_62 = dollar) | (v_62 = star) | (v_62 = solamit))));
@@ -210,6 +239,7 @@ ASSIGN
 		(y = 4) & (x = 4) : !((v_54 = solamit) | (((v_54 = dollar) | (v_54 = star)) & ((v_64 = dollar) | (v_64 = star) | (v_64 = solamit))));
 		(y = 4) & (x = 5) : !((v_55 = solamit) | (((v_55 = dollar) | (v_55 = star)) & ((v_65 = dollar) | (v_65 = star) | (v_65 = solamit))));
 		(y = 4) & (x = 6) : !((v_56 = solamit) | (((v_56 = dollar) | (v_56 = star)) & ((v_66 = dollar) | (v_66 = star) | (v_66 = solamit))));
+		(y = 4) & (x = 7) : !((v_57 = solamit) | (((v_57 = dollar) | (v_57 = star)) & ((v_67 = dollar) | (v_67 = star) | (v_67 = solamit))));
 		(y = 5) & (x = 0) : !((v_60 = solamit));
 		(y = 5) & (x = 1) : !((v_61 = solamit));
 		(y = 5) & (x = 2) : !((v_62 = solamit));
@@ -217,6 +247,7 @@ ASSIGN
 		(y = 5) & (x = 4) : !((v_64 = solamit));
 		(y = 5) & (x = 5) : !((v_65 = solamit));
 		(y = 5) & (x = 6) : !((v_66 = solamit));
+		(y = 5) & (x = 7) : !((v_67 = solamit));
 		(y = 6) & (x = 0) : FALSE;
 		(y = 6) & (x = 1) : FALSE;
 		(y = 6) & (x = 2) : FALSE;
@@ -224,6 +255,7 @@ ASSIGN
 		(y = 6) & (x = 4) : FALSE;
 		(y = 6) & (x = 5) : FALSE;
 		(y = 6) & (x = 6) : FALSE;
+		(y = 6) & (x = 7) : FALSE;
 		TRUE : FALSE;
 	esac;
 
@@ -233,50 +265,57 @@ ASSIGN
 		(y = 0) & (x = 2) : !((v_03 = solamit) | (((v_03 = dollar) | (v_03 = star)) & ((v_04 = dollar) | (v_04 = star) | (v_04 = solamit))));
 		(y = 0) & (x = 3) : !((v_04 = solamit) | (((v_04 = dollar) | (v_04 = star)) & ((v_05 = dollar) | (v_05 = star) | (v_05 = solamit))));
 		(y = 0) & (x = 4) : !((v_05 = solamit) | (((v_05 = dollar) | (v_05 = star)) & ((v_06 = dollar) | (v_06 = star) | (v_06 = solamit))));
-		(y = 0) & (x = 5) : !((v_06 = solamit));
-		(y = 0) & (x = 6) : FALSE;
+		(y = 0) & (x = 5) : !((v_06 = solamit) | (((v_06 = dollar) | (v_06 = star)) & ((v_07 = dollar) | (v_07 = star) | (v_07 = solamit))));
+		(y = 0) & (x = 6) : !((v_07 = solamit));
+		(y = 0) & (x = 7) : FALSE;
 		(y = 1) & (x = 0) : !((v_11 = solamit) | (((v_11 = dollar) | (v_11 = star)) & ((v_12 = dollar) | (v_12 = star) | (v_12 = solamit))));
 		(y = 1) & (x = 1) : !((v_12 = solamit) | (((v_12 = dollar) | (v_12 = star)) & ((v_13 = dollar) | (v_13 = star) | (v_13 = solamit))));
 		(y = 1) & (x = 2) : !((v_13 = solamit) | (((v_13 = dollar) | (v_13 = star)) & ((v_14 = dollar) | (v_14 = star) | (v_14 = solamit))));
 		(y = 1) & (x = 3) : !((v_14 = solamit) | (((v_14 = dollar) | (v_14 = star)) & ((v_15 = dollar) | (v_15 = star) | (v_15 = solamit))));
 		(y = 1) & (x = 4) : !((v_15 = solamit) | (((v_15 = dollar) | (v_15 = star)) & ((v_16 = dollar) | (v_16 = star) | (v_16 = solamit))));
-		(y = 1) & (x = 5) : !((v_16 = solamit));
-		(y = 1) & (x = 6) : FALSE;
+		(y = 1) & (x = 5) : !((v_16 = solamit) | (((v_16 = dollar) | (v_16 = star)) & ((v_17 = dollar) | (v_17 = star) | (v_17 = solamit))));
+		(y = 1) & (x = 6) : !((v_17 = solamit));
+		(y = 1) & (x = 7) : FALSE;
 		(y = 2) & (x = 0) : !((v_21 = solamit) | (((v_21 = dollar) | (v_21 = star)) & ((v_22 = dollar) | (v_22 = star) | (v_22 = solamit))));
 		(y = 2) & (x = 1) : !((v_22 = solamit) | (((v_22 = dollar) | (v_22 = star)) & ((v_23 = dollar) | (v_23 = star) | (v_23 = solamit))));
 		(y = 2) & (x = 2) : !((v_23 = solamit) | (((v_23 = dollar) | (v_23 = star)) & ((v_24 = dollar) | (v_24 = star) | (v_24 = solamit))));
 		(y = 2) & (x = 3) : !((v_24 = solamit) | (((v_24 = dollar) | (v_24 = star)) & ((v_25 = dollar) | (v_25 = star) | (v_25 = solamit))));
 		(y = 2) & (x = 4) : !((v_25 = solamit) | (((v_25 = dollar) | (v_25 = star)) & ((v_26 = dollar) | (v_26 = star) | (v_26 = solamit))));
-		(y = 2) & (x = 5) : !((v_26 = solamit));
-		(y = 2) & (x = 6) : FALSE;
+		(y = 2) & (x = 5) : !((v_26 = solamit) | (((v_26 = dollar) | (v_26 = star)) & ((v_27 = dollar) | (v_27 = star) | (v_27 = solamit))));
+		(y = 2) & (x = 6) : !((v_27 = solamit));
+		(y = 2) & (x = 7) : FALSE;
 		(y = 3) & (x = 0) : !((v_31 = solamit) | (((v_31 = dollar) | (v_31 = star)) & ((v_32 = dollar) | (v_32 = star) | (v_32 = solamit))));
 		(y = 3) & (x = 1) : !((v_32 = solamit) | (((v_32 = dollar) | (v_32 = star)) & ((v_33 = dollar) | (v_33 = star) | (v_33 = solamit))));
 		(y = 3) & (x = 2) : !((v_33 = solamit) | (((v_33 = dollar) | (v_33 = star)) & ((v_34 = dollar) | (v_34 = star) | (v_34 = solamit))));
 		(y = 3) & (x = 3) : !((v_34 = solamit) | (((v_34 = dollar) | (v_34 = star)) & ((v_35 = dollar) | (v_35 = star) | (v_35 = solamit))));
 		(y = 3) & (x = 4) : !((v_35 = solamit) | (((v_35 = dollar) | (v_35 = star)) & ((v_36 = dollar) | (v_36 = star) | (v_36 = solamit))));
-		(y = 3) & (x = 5) : !((v_36 = solamit));
-		(y = 3) & (x = 6) : FALSE;
+		(y = 3) & (x = 5) : !((v_36 = solamit) | (((v_36 = dollar) | (v_36 = star)) & ((v_37 = dollar) | (v_37 = star) | (v_37 = solamit))));
+		(y = 3) & (x = 6) : !((v_37 = solamit));
+		(y = 3) & (x = 7) : FALSE;
 		(y = 4) & (x = 0) : !((v_41 = solamit) | (((v_41 = dollar) | (v_41 = star)) & ((v_42 = dollar) | (v_42 = star) | (v_42 = solamit))));
 		(y = 4) & (x = 1) : !((v_42 = solamit) | (((v_42 = dollar) | (v_42 = star)) & ((v_43 = dollar) | (v_43 = star) | (v_43 = solamit))));
 		(y = 4) & (x = 2) : !((v_43 = solamit) | (((v_43 = dollar) | (v_43 = star)) & ((v_44 = dollar) | (v_44 = star) | (v_44 = solamit))));
 		(y = 4) & (x = 3) : !((v_44 = solamit) | (((v_44 = dollar) | (v_44 = star)) & ((v_45 = dollar) | (v_45 = star) | (v_45 = solamit))));
 		(y = 4) & (x = 4) : !((v_45 = solamit) | (((v_45 = dollar) | (v_45 = star)) & ((v_46 = dollar) | (v_46 = star) | (v_46 = solamit))));
-		(y = 4) & (x = 5) : !((v_46 = solamit));
-		(y = 4) & (x = 6) : FALSE;
+		(y = 4) & (x = 5) : !((v_46 = solamit) | (((v_46 = dollar) | (v_46 = star)) & ((v_47 = dollar) | (v_47 = star) | (v_47 = solamit))));
+		(y = 4) & (x = 6) : !((v_47 = solamit));
+		(y = 4) & (x = 7) : FALSE;
 		(y = 5) & (x = 0) : !((v_51 = solamit) | (((v_51 = dollar) | (v_51 = star)) & ((v_52 = dollar) | (v_52 = star) | (v_52 = solamit))));
 		(y = 5) & (x = 1) : !((v_52 = solamit) | (((v_52 = dollar) | (v_52 = star)) & ((v_53 = dollar) | (v_53 = star) | (v_53 = solamit))));
 		(y = 5) & (x = 2) : !((v_53 = solamit) | (((v_53 = dollar) | (v_53 = star)) & ((v_54 = dollar) | (v_54 = star) | (v_54 = solamit))));
 		(y = 5) & (x = 3) : !((v_54 = solamit) | (((v_54 = dollar) | (v_54 = star)) & ((v_55 = dollar) | (v_55 = star) | (v_55 = solamit))));
 		(y = 5) & (x = 4) : !((v_55 = solamit) | (((v_55 = dollar) | (v_55 = star)) & ((v_56 = dollar) | (v_56 = star) | (v_56 = solamit))));
-		(y = 5) & (x = 5) : !((v_56 = solamit));
-		(y = 5) & (x = 6) : FALSE;
+		(y = 5) & (x = 5) : !((v_56 = solamit) | (((v_56 = dollar) | (v_56 = star)) & ((v_57 = dollar) | (v_57 = star) | (v_57 = solamit))));
+		(y = 5) & (x = 6) : !((v_57 = solamit));
+		(y = 5) & (x = 7) : FALSE;
 		(y = 6) & (x = 0) : !((v_61 = solamit) | (((v_61 = dollar) | (v_61 = star)) & ((v_62 = dollar) | (v_62 = star) | (v_62 = solamit))));
 		(y = 6) & (x = 1) : !((v_62 = solamit) | (((v_62 = dollar) | (v_62 = star)) & ((v_63 = dollar) | (v_63 = star) | (v_63 = solamit))));
 		(y = 6) & (x = 2) : !((v_63 = solamit) | (((v_63 = dollar) | (v_63 = star)) & ((v_64 = dollar) | (v_64 = star) | (v_64 = solamit))));
 		(y = 6) & (x = 3) : !((v_64 = solamit) | (((v_64 = dollar) | (v_64 = star)) & ((v_65 = dollar) | (v_65 = star) | (v_65 = solamit))));
 		(y = 6) & (x = 4) : !((v_65 = solamit) | (((v_65 = dollar) | (v_65 = star)) & ((v_66 = dollar) | (v_66 = star) | (v_66 = solamit))));
-		(y = 6) & (x = 5) : !((v_66 = solamit));
-		(y = 6) & (x = 6) : FALSE;
+		(y = 6) & (x = 5) : !((v_66 = solamit) | (((v_66 = dollar) | (v_66 = star)) & ((v_67 = dollar) | (v_67 = star) | (v_67 = solamit))));
+		(y = 6) & (x = 6) : !((v_67 = solamit));
+		(y = 6) & (x = 7) : FALSE;
 		TRUE : FALSE;
 	esac;
 
@@ -288,6 +327,7 @@ ASSIGN
 		(y = 0) & (x = 4) : !((v_03 = solamit) | (((v_03 = dollar) | (v_03 = star)) & ((v_02 = dollar) | (v_02 = star) | (v_02 = solamit))));
 		(y = 0) & (x = 5) : !((v_04 = solamit) | (((v_04 = dollar) | (v_04 = star)) & ((v_03 = dollar) | (v_03 = star) | (v_03 = solamit))));
 		(y = 0) & (x = 6) : !((v_05 = solamit) | (((v_05 = dollar) | (v_05 = star)) & ((v_04 = dollar) | (v_04 = star) | (v_04 = solamit))));
+		(y = 0) & (x = 7) : !((v_06 = solamit) | (((v_06 = dollar) | (v_06 = star)) & ((v_05 = dollar) | (v_05 = star) | (v_05 = solamit))));
 		(y = 1) & (x = 0) : FALSE;
 		(y = 1) & (x = 1) : !((v_10 = solamit));
 		(y = 1) & (x = 2) : !((v_11 = solamit) | (((v_11 = dollar) | (v_11 = star)) & ((v_10 = dollar) | (v_10 = star) | (v_10 = solamit))));
@@ -295,6 +335,7 @@ ASSIGN
 		(y = 1) & (x = 4) : !((v_13 = solamit) | (((v_13 = dollar) | (v_13 = star)) & ((v_12 = dollar) | (v_12 = star) | (v_12 = solamit))));
 		(y = 1) & (x = 5) : !((v_14 = solamit) | (((v_14 = dollar) | (v_14 = star)) & ((v_13 = dollar) | (v_13 = star) | (v_13 = solamit))));
 		(y = 1) & (x = 6) : !((v_15 = solamit) | (((v_15 = dollar) | (v_15 = star)) & ((v_14 = dollar) | (v_14 = star) | (v_14 = solamit))));
+		(y = 1) & (x = 7) : !((v_16 = solamit) | (((v_16 = dollar) | (v_16 = star)) & ((v_15 = dollar) | (v_15 = star) | (v_15 = solamit))));
 		(y = 2) & (x = 0) : FALSE;
 		(y = 2) & (x = 1) : !((v_20 = solamit));
 		(y = 2) & (x = 2) : !((v_21 = solamit) | (((v_21 = dollar) | (v_21 = star)) & ((v_20 = dollar) | (v_20 = star) | (v_20 = solamit))));
@@ -302,6 +343,7 @@ ASSIGN
 		(y = 2) & (x = 4) : !((v_23 = solamit) | (((v_23 = dollar) | (v_23 = star)) & ((v_22 = dollar) | (v_22 = star) | (v_22 = solamit))));
 		(y = 2) & (x = 5) : !((v_24 = solamit) | (((v_24 = dollar) | (v_24 = star)) & ((v_23 = dollar) | (v_23 = star) | (v_23 = solamit))));
 		(y = 2) & (x = 6) : !((v_25 = solamit) | (((v_25 = dollar) | (v_25 = star)) & ((v_24 = dollar) | (v_24 = star) | (v_24 = solamit))));
+		(y = 2) & (x = 7) : !((v_26 = solamit) | (((v_26 = dollar) | (v_26 = star)) & ((v_25 = dollar) | (v_25 = star) | (v_25 = solamit))));
 		(y = 3) & (x = 0) : FALSE;
 		(y = 3) & (x = 1) : !((v_30 = solamit));
 		(y = 3) & (x = 2) : !((v_31 = solamit) | (((v_31 = dollar) | (v_31 = star)) & ((v_30 = dollar) | (v_30 = star) | (v_30 = solamit))));
@@ -309,6 +351,7 @@ ASSIGN
 		(y = 3) & (x = 4) : !((v_33 = solamit) | (((v_33 = dollar) | (v_33 = star)) & ((v_32 = dollar) | (v_32 = star) | (v_32 = solamit))));
 		(y = 3) & (x = 5) : !((v_34 = solamit) | (((v_34 = dollar) | (v_34 = star)) & ((v_33 = dollar) | (v_33 = star) | (v_33 = solamit))));
 		(y = 3) & (x = 6) : !((v_35 = solamit) | (((v_35 = dollar) | (v_35 = star)) & ((v_34 = dollar) | (v_34 = star) | (v_34 = solamit))));
+		(y = 3) & (x = 7) : !((v_36 = solamit) | (((v_36 = dollar) | (v_36 = star)) & ((v_35 = dollar) | (v_35 = star) | (v_35 = solamit))));
 		(y = 4) & (x = 0) : FALSE;
 		(y = 4) & (x = 1) : !((v_40 = solamit));
 		(y = 4) & (x = 2) : !((v_41 = solamit) | (((v_41 = dollar) | (v_41 = star)) & ((v_40 = dollar) | (v_40 = star) | (v_40 = solamit))));
@@ -316,6 +359,7 @@ ASSIGN
 		(y = 4) & (x = 4) : !((v_43 = solamit) | (((v_43 = dollar) | (v_43 = star)) & ((v_42 = dollar) | (v_42 = star) | (v_42 = solamit))));
 		(y = 4) & (x = 5) : !((v_44 = solamit) | (((v_44 = dollar) | (v_44 = star)) & ((v_43 = dollar) | (v_43 = star) | (v_43 = solamit))));
 		(y = 4) & (x = 6) : !((v_45 = solamit) | (((v_45 = dollar) | (v_45 = star)) & ((v_44 = dollar) | (v_44 = star) | (v_44 = solamit))));
+		(y = 4) & (x = 7) : !((v_46 = solamit) | (((v_46 = dollar) | (v_46 = star)) & ((v_45 = dollar) | (v_45 = star) | (v_45 = solamit))));
 		(y = 5) & (x = 0) : FALSE;
 		(y = 5) & (x = 1) : !((v_50 = solamit));
 		(y = 5) & (x = 2) : !((v_51 = solamit) | (((v_51 = dollar) | (v_51 = star)) & ((v_50 = dollar) | (v_50 = star) | (v_50 = solamit))));
@@ -323,6 +367,7 @@ ASSIGN
 		(y = 5) & (x = 4) : !((v_53 = solamit) | (((v_53 = dollar) | (v_53 = star)) & ((v_52 = dollar) | (v_52 = star) | (v_52 = solamit))));
 		(y = 5) & (x = 5) : !((v_54 = solamit) | (((v_54 = dollar) | (v_54 = star)) & ((v_53 = dollar) | (v_53 = star) | (v_53 = solamit))));
 		(y = 5) & (x = 6) : !((v_55 = solamit) | (((v_55 = dollar) | (v_55 = star)) & ((v_54 = dollar) | (v_54 = star) | (v_54 = solamit))));
+		(y = 5) & (x = 7) : !((v_56 = solamit) | (((v_56 = dollar) | (v_56 = star)) & ((v_55 = dollar) | (v_55 = star) | (v_55 = solamit))));
 		(y = 6) & (x = 0) : FALSE;
 		(y = 6) & (x = 1) : !((v_60 = solamit));
 		(y = 6) & (x = 2) : !((v_61 = solamit) | (((v_61 = dollar) | (v_61 = star)) & ((v_60 = dollar) | (v_60 = star) | (v_60 = solamit))));
@@ -330,6 +375,7 @@ ASSIGN
 		(y = 6) & (x = 4) : !((v_63 = solamit) | (((v_63 = dollar) | (v_63 = star)) & ((v_62 = dollar) | (v_62 = star) | (v_62 = solamit))));
 		(y = 6) & (x = 5) : !((v_64 = solamit) | (((v_64 = dollar) | (v_64 = star)) & ((v_63 = dollar) | (v_63 = star) | (v_63 = solamit))));
 		(y = 6) & (x = 6) : !((v_65 = solamit) | (((v_65 = dollar) | (v_65 = star)) & ((v_64 = dollar) | (v_64 = star) | (v_64 = solamit))));
+		(y = 6) & (x = 7) : !((v_66 = solamit) | (((v_66 = dollar) | (v_66 = star)) & ((v_65 = dollar) | (v_65 = star) | (v_65 = solamit))));
 		TRUE : FALSE;
 	esac;
 
@@ -458,6 +504,8 @@ ASSIGN
 		(y = 0) & (x = 3) & ((v_04 = star) | (v_04 = dollar)) & (v_05 = dot) & (next(turn) = r) : star;
 		(y = 0) & (x = 6) & ((v_05 = minus) | (v_05 = dollar)) & (next(turn) = l) : shtrudel;
 		(y = 0) & (x = 6) & ((v_05 = dot) | (v_05 = star)) & (next(turn) = l) : plus;
+		(y = 0) & (x = 7) & ((v_06 = star) | (v_06 = dollar)) & (v_05 = minus) & (next(turn) = l) : dollar;
+		(y = 0) & (x = 7) & ((v_06 = star) | (v_06 = dollar)) & (v_05 = dot) & (next(turn) = l) : star;
 		(y = 1) & (x = 5) & ((v_05 = minus) | (v_05 = dollar)) & (next(turn) = u) : shtrudel;
 		(y = 1) & (x = 5) & ((v_05 = dot) | (v_05 = star)) & (next(turn) = u) : plus;
 		(y = 2) & (x = 5) & ((v_15 = star) | (v_15 = dollar)) & (v_05 = minus) & (next(turn) = u) : dollar;
@@ -472,11 +520,27 @@ ASSIGN
 		(y = 0) & (x = 5) & ((v_06 = dot) | (v_06 = star)) & (next(turn) = r) : plus;
 		(y = 0) & (x = 4) & ((v_05 = star) | (v_05 = dollar)) & (v_06 = minus) & (next(turn) = r) : dollar;
 		(y = 0) & (x = 4) & ((v_05 = star) | (v_05 = dollar)) & (v_06 = dot) & (next(turn) = r) : star;
+		(y = 0) & (x = 7) & ((v_06 = minus) | (v_06 = dollar)) & (next(turn) = l) : shtrudel;
+		(y = 0) & (x = 7) & ((v_06 = dot) | (v_06 = star)) & (next(turn) = l) : plus;
 		(y = 1) & (x = 6) & ((v_06 = minus) | (v_06 = dollar)) & (next(turn) = u) : shtrudel;
 		(y = 1) & (x = 6) & ((v_06 = dot) | (v_06 = star)) & (next(turn) = u) : plus;
 		(y = 2) & (x = 6) & ((v_16 = star) | (v_16 = dollar)) & (v_06 = minus) & (next(turn) = u) : dollar;
 		(y = 2) & (x = 6) & ((v_16 = star) | (v_16 = dollar)) & (v_06 = dot) & (next(turn) = u) : star;
 		TRUE : v_06;
+	esac;
+
+	next(v_07) := case
+		(y = 0) & (x = 7) & (v_07 = shtrudel) & (next(turn) != none) : minus;
+		(y = 0) & (x = 7) & (v_07 = plus) & (next(turn) != none) : dot;
+		(y = 0) & (x = 6) & ((v_07 = minus) | (v_07 = dollar)) & (next(turn) = r) : shtrudel;
+		(y = 0) & (x = 6) & ((v_07 = dot) | (v_07 = star)) & (next(turn) = r) : plus;
+		(y = 0) & (x = 5) & ((v_06 = star) | (v_06 = dollar)) & (v_07 = minus) & (next(turn) = r) : dollar;
+		(y = 0) & (x = 5) & ((v_06 = star) | (v_06 = dollar)) & (v_07 = dot) & (next(turn) = r) : star;
+		(y = 1) & (x = 7) & ((v_07 = minus) | (v_07 = dollar)) & (next(turn) = u) : shtrudel;
+		(y = 1) & (x = 7) & ((v_07 = dot) | (v_07 = star)) & (next(turn) = u) : plus;
+		(y = 2) & (x = 7) & ((v_17 = star) | (v_17 = dollar)) & (v_07 = minus) & (next(turn) = u) : dollar;
+		(y = 2) & (x = 7) & ((v_17 = star) | (v_17 = dollar)) & (v_07 = dot) & (next(turn) = u) : star;
+		TRUE : v_07;
 	esac;
 
 	next(v_10) := case
@@ -582,6 +646,8 @@ ASSIGN
 		(y = 1) & (x = 3) & ((v_14 = star) | (v_14 = dollar)) & (v_15 = dot) & (next(turn) = r) : star;
 		(y = 1) & (x = 6) & ((v_15 = minus) | (v_15 = dollar)) & (next(turn) = l) : shtrudel;
 		(y = 1) & (x = 6) & ((v_15 = dot) | (v_15 = star)) & (next(turn) = l) : plus;
+		(y = 1) & (x = 7) & ((v_16 = star) | (v_16 = dollar)) & (v_15 = minus) & (next(turn) = l) : dollar;
+		(y = 1) & (x = 7) & ((v_16 = star) | (v_16 = dollar)) & (v_15 = dot) & (next(turn) = l) : star;
 		(y = 0) & (x = 5) & ((v_15 = minus) | (v_15 = dollar)) & (next(turn) = d) : shtrudel;
 		(y = 0) & (x = 5) & ((v_15 = dot) | (v_15 = star)) & (next(turn) = d) : plus;
 		(y = 2) & (x = 5) & ((v_15 = minus) | (v_15 = dollar)) & (next(turn) = u) : shtrudel;
@@ -598,6 +664,8 @@ ASSIGN
 		(y = 1) & (x = 5) & ((v_16 = dot) | (v_16 = star)) & (next(turn) = r) : plus;
 		(y = 1) & (x = 4) & ((v_15 = star) | (v_15 = dollar)) & (v_16 = minus) & (next(turn) = r) : dollar;
 		(y = 1) & (x = 4) & ((v_15 = star) | (v_15 = dollar)) & (v_16 = dot) & (next(turn) = r) : star;
+		(y = 1) & (x = 7) & ((v_16 = minus) | (v_16 = dollar)) & (next(turn) = l) : shtrudel;
+		(y = 1) & (x = 7) & ((v_16 = dot) | (v_16 = star)) & (next(turn) = l) : plus;
 		(y = 0) & (x = 6) & ((v_16 = minus) | (v_16 = dollar)) & (next(turn) = d) : shtrudel;
 		(y = 0) & (x = 6) & ((v_16 = dot) | (v_16 = star)) & (next(turn) = d) : plus;
 		(y = 2) & (x = 6) & ((v_16 = minus) | (v_16 = dollar)) & (next(turn) = u) : shtrudel;
@@ -605,6 +673,22 @@ ASSIGN
 		(y = 3) & (x = 6) & ((v_26 = star) | (v_26 = dollar)) & (v_16 = minus) & (next(turn) = u) : dollar;
 		(y = 3) & (x = 6) & ((v_26 = star) | (v_26 = dollar)) & (v_16 = dot) & (next(turn) = u) : star;
 		TRUE : v_16;
+	esac;
+
+	next(v_17) := case
+		(y = 1) & (x = 7) & (v_17 = shtrudel) & (next(turn) != none) : minus;
+		(y = 1) & (x = 7) & (v_17 = plus) & (next(turn) != none) : dot;
+		(y = 1) & (x = 6) & ((v_17 = minus) | (v_17 = dollar)) & (next(turn) = r) : shtrudel;
+		(y = 1) & (x = 6) & ((v_17 = dot) | (v_17 = star)) & (next(turn) = r) : plus;
+		(y = 1) & (x = 5) & ((v_16 = star) | (v_16 = dollar)) & (v_17 = minus) & (next(turn) = r) : dollar;
+		(y = 1) & (x = 5) & ((v_16 = star) | (v_16 = dollar)) & (v_17 = dot) & (next(turn) = r) : star;
+		(y = 0) & (x = 7) & ((v_17 = minus) | (v_17 = dollar)) & (next(turn) = d) : shtrudel;
+		(y = 0) & (x = 7) & ((v_17 = dot) | (v_17 = star)) & (next(turn) = d) : plus;
+		(y = 2) & (x = 7) & ((v_17 = minus) | (v_17 = dollar)) & (next(turn) = u) : shtrudel;
+		(y = 2) & (x = 7) & ((v_17 = dot) | (v_17 = star)) & (next(turn) = u) : plus;
+		(y = 3) & (x = 7) & ((v_27 = star) | (v_27 = dollar)) & (v_17 = minus) & (next(turn) = u) : dollar;
+		(y = 3) & (x = 7) & ((v_27 = star) | (v_27 = dollar)) & (v_17 = dot) & (next(turn) = u) : star;
+		TRUE : v_17;
 	esac;
 
 	next(v_20) := case
@@ -720,6 +804,8 @@ ASSIGN
 		(y = 2) & (x = 3) & ((v_24 = star) | (v_24 = dollar)) & (v_25 = dot) & (next(turn) = r) : star;
 		(y = 2) & (x = 6) & ((v_25 = minus) | (v_25 = dollar)) & (next(turn) = l) : shtrudel;
 		(y = 2) & (x = 6) & ((v_25 = dot) | (v_25 = star)) & (next(turn) = l) : plus;
+		(y = 2) & (x = 7) & ((v_26 = star) | (v_26 = dollar)) & (v_25 = minus) & (next(turn) = l) : dollar;
+		(y = 2) & (x = 7) & ((v_26 = star) | (v_26 = dollar)) & (v_25 = dot) & (next(turn) = l) : star;
 		(y = 1) & (x = 5) & ((v_25 = minus) | (v_25 = dollar)) & (next(turn) = d) : shtrudel;
 		(y = 1) & (x = 5) & ((v_25 = dot) | (v_25 = star)) & (next(turn) = d) : plus;
 		(y = 0) & (x = 5) & ((v_15 = star) | (v_15 = dollar)) & (v_25 = minus) & (next(turn) = d) : dollar;
@@ -738,6 +824,8 @@ ASSIGN
 		(y = 2) & (x = 5) & ((v_26 = dot) | (v_26 = star)) & (next(turn) = r) : plus;
 		(y = 2) & (x = 4) & ((v_25 = star) | (v_25 = dollar)) & (v_26 = minus) & (next(turn) = r) : dollar;
 		(y = 2) & (x = 4) & ((v_25 = star) | (v_25 = dollar)) & (v_26 = dot) & (next(turn) = r) : star;
+		(y = 2) & (x = 7) & ((v_26 = minus) | (v_26 = dollar)) & (next(turn) = l) : shtrudel;
+		(y = 2) & (x = 7) & ((v_26 = dot) | (v_26 = star)) & (next(turn) = l) : plus;
 		(y = 1) & (x = 6) & ((v_26 = minus) | (v_26 = dollar)) & (next(turn) = d) : shtrudel;
 		(y = 1) & (x = 6) & ((v_26 = dot) | (v_26 = star)) & (next(turn) = d) : plus;
 		(y = 0) & (x = 6) & ((v_16 = star) | (v_16 = dollar)) & (v_26 = minus) & (next(turn) = d) : dollar;
@@ -747,6 +835,24 @@ ASSIGN
 		(y = 4) & (x = 6) & ((v_36 = star) | (v_36 = dollar)) & (v_26 = minus) & (next(turn) = u) : dollar;
 		(y = 4) & (x = 6) & ((v_36 = star) | (v_36 = dollar)) & (v_26 = dot) & (next(turn) = u) : star;
 		TRUE : v_26;
+	esac;
+
+	next(v_27) := case
+		(y = 2) & (x = 7) & (v_27 = shtrudel) & (next(turn) != none) : minus;
+		(y = 2) & (x = 7) & (v_27 = plus) & (next(turn) != none) : dot;
+		(y = 2) & (x = 6) & ((v_27 = minus) | (v_27 = dollar)) & (next(turn) = r) : shtrudel;
+		(y = 2) & (x = 6) & ((v_27 = dot) | (v_27 = star)) & (next(turn) = r) : plus;
+		(y = 2) & (x = 5) & ((v_26 = star) | (v_26 = dollar)) & (v_27 = minus) & (next(turn) = r) : dollar;
+		(y = 2) & (x = 5) & ((v_26 = star) | (v_26 = dollar)) & (v_27 = dot) & (next(turn) = r) : star;
+		(y = 1) & (x = 7) & ((v_27 = minus) | (v_27 = dollar)) & (next(turn) = d) : shtrudel;
+		(y = 1) & (x = 7) & ((v_27 = dot) | (v_27 = star)) & (next(turn) = d) : plus;
+		(y = 0) & (x = 7) & ((v_17 = star) | (v_17 = dollar)) & (v_27 = minus) & (next(turn) = d) : dollar;
+		(y = 0) & (x = 7) & ((v_17 = star) | (v_17 = dollar)) & (v_27 = dot) & (next(turn) = d) : star;
+		(y = 3) & (x = 7) & ((v_27 = minus) | (v_27 = dollar)) & (next(turn) = u) : shtrudel;
+		(y = 3) & (x = 7) & ((v_27 = dot) | (v_27 = star)) & (next(turn) = u) : plus;
+		(y = 4) & (x = 7) & ((v_37 = star) | (v_37 = dollar)) & (v_27 = minus) & (next(turn) = u) : dollar;
+		(y = 4) & (x = 7) & ((v_37 = star) | (v_37 = dollar)) & (v_27 = dot) & (next(turn) = u) : star;
+		TRUE : v_27;
 	esac;
 
 	next(v_30) := case
@@ -862,6 +968,8 @@ ASSIGN
 		(y = 3) & (x = 3) & ((v_34 = star) | (v_34 = dollar)) & (v_35 = dot) & (next(turn) = r) : star;
 		(y = 3) & (x = 6) & ((v_35 = minus) | (v_35 = dollar)) & (next(turn) = l) : shtrudel;
 		(y = 3) & (x = 6) & ((v_35 = dot) | (v_35 = star)) & (next(turn) = l) : plus;
+		(y = 3) & (x = 7) & ((v_36 = star) | (v_36 = dollar)) & (v_35 = minus) & (next(turn) = l) : dollar;
+		(y = 3) & (x = 7) & ((v_36 = star) | (v_36 = dollar)) & (v_35 = dot) & (next(turn) = l) : star;
 		(y = 2) & (x = 5) & ((v_35 = minus) | (v_35 = dollar)) & (next(turn) = d) : shtrudel;
 		(y = 2) & (x = 5) & ((v_35 = dot) | (v_35 = star)) & (next(turn) = d) : plus;
 		(y = 1) & (x = 5) & ((v_25 = star) | (v_25 = dollar)) & (v_35 = minus) & (next(turn) = d) : dollar;
@@ -880,6 +988,8 @@ ASSIGN
 		(y = 3) & (x = 5) & ((v_36 = dot) | (v_36 = star)) & (next(turn) = r) : plus;
 		(y = 3) & (x = 4) & ((v_35 = star) | (v_35 = dollar)) & (v_36 = minus) & (next(turn) = r) : dollar;
 		(y = 3) & (x = 4) & ((v_35 = star) | (v_35 = dollar)) & (v_36 = dot) & (next(turn) = r) : star;
+		(y = 3) & (x = 7) & ((v_36 = minus) | (v_36 = dollar)) & (next(turn) = l) : shtrudel;
+		(y = 3) & (x = 7) & ((v_36 = dot) | (v_36 = star)) & (next(turn) = l) : plus;
 		(y = 2) & (x = 6) & ((v_36 = minus) | (v_36 = dollar)) & (next(turn) = d) : shtrudel;
 		(y = 2) & (x = 6) & ((v_36 = dot) | (v_36 = star)) & (next(turn) = d) : plus;
 		(y = 1) & (x = 6) & ((v_26 = star) | (v_26 = dollar)) & (v_36 = minus) & (next(turn) = d) : dollar;
@@ -889,6 +999,24 @@ ASSIGN
 		(y = 5) & (x = 6) & ((v_46 = star) | (v_46 = dollar)) & (v_36 = minus) & (next(turn) = u) : dollar;
 		(y = 5) & (x = 6) & ((v_46 = star) | (v_46 = dollar)) & (v_36 = dot) & (next(turn) = u) : star;
 		TRUE : v_36;
+	esac;
+
+	next(v_37) := case
+		(y = 3) & (x = 7) & (v_37 = shtrudel) & (next(turn) != none) : minus;
+		(y = 3) & (x = 7) & (v_37 = plus) & (next(turn) != none) : dot;
+		(y = 3) & (x = 6) & ((v_37 = minus) | (v_37 = dollar)) & (next(turn) = r) : shtrudel;
+		(y = 3) & (x = 6) & ((v_37 = dot) | (v_37 = star)) & (next(turn) = r) : plus;
+		(y = 3) & (x = 5) & ((v_36 = star) | (v_36 = dollar)) & (v_37 = minus) & (next(turn) = r) : dollar;
+		(y = 3) & (x = 5) & ((v_36 = star) | (v_36 = dollar)) & (v_37 = dot) & (next(turn) = r) : star;
+		(y = 2) & (x = 7) & ((v_37 = minus) | (v_37 = dollar)) & (next(turn) = d) : shtrudel;
+		(y = 2) & (x = 7) & ((v_37 = dot) | (v_37 = star)) & (next(turn) = d) : plus;
+		(y = 1) & (x = 7) & ((v_27 = star) | (v_27 = dollar)) & (v_37 = minus) & (next(turn) = d) : dollar;
+		(y = 1) & (x = 7) & ((v_27 = star) | (v_27 = dollar)) & (v_37 = dot) & (next(turn) = d) : star;
+		(y = 4) & (x = 7) & ((v_37 = minus) | (v_37 = dollar)) & (next(turn) = u) : shtrudel;
+		(y = 4) & (x = 7) & ((v_37 = dot) | (v_37 = star)) & (next(turn) = u) : plus;
+		(y = 5) & (x = 7) & ((v_47 = star) | (v_47 = dollar)) & (v_37 = minus) & (next(turn) = u) : dollar;
+		(y = 5) & (x = 7) & ((v_47 = star) | (v_47 = dollar)) & (v_37 = dot) & (next(turn) = u) : star;
+		TRUE : v_37;
 	esac;
 
 	next(v_40) := case
@@ -1004,6 +1132,8 @@ ASSIGN
 		(y = 4) & (x = 3) & ((v_44 = star) | (v_44 = dollar)) & (v_45 = dot) & (next(turn) = r) : star;
 		(y = 4) & (x = 6) & ((v_45 = minus) | (v_45 = dollar)) & (next(turn) = l) : shtrudel;
 		(y = 4) & (x = 6) & ((v_45 = dot) | (v_45 = star)) & (next(turn) = l) : plus;
+		(y = 4) & (x = 7) & ((v_46 = star) | (v_46 = dollar)) & (v_45 = minus) & (next(turn) = l) : dollar;
+		(y = 4) & (x = 7) & ((v_46 = star) | (v_46 = dollar)) & (v_45 = dot) & (next(turn) = l) : star;
 		(y = 3) & (x = 5) & ((v_45 = minus) | (v_45 = dollar)) & (next(turn) = d) : shtrudel;
 		(y = 3) & (x = 5) & ((v_45 = dot) | (v_45 = star)) & (next(turn) = d) : plus;
 		(y = 2) & (x = 5) & ((v_35 = star) | (v_35 = dollar)) & (v_45 = minus) & (next(turn) = d) : dollar;
@@ -1022,6 +1152,8 @@ ASSIGN
 		(y = 4) & (x = 5) & ((v_46 = dot) | (v_46 = star)) & (next(turn) = r) : plus;
 		(y = 4) & (x = 4) & ((v_45 = star) | (v_45 = dollar)) & (v_46 = minus) & (next(turn) = r) : dollar;
 		(y = 4) & (x = 4) & ((v_45 = star) | (v_45 = dollar)) & (v_46 = dot) & (next(turn) = r) : star;
+		(y = 4) & (x = 7) & ((v_46 = minus) | (v_46 = dollar)) & (next(turn) = l) : shtrudel;
+		(y = 4) & (x = 7) & ((v_46 = dot) | (v_46 = star)) & (next(turn) = l) : plus;
 		(y = 3) & (x = 6) & ((v_46 = minus) | (v_46 = dollar)) & (next(turn) = d) : shtrudel;
 		(y = 3) & (x = 6) & ((v_46 = dot) | (v_46 = star)) & (next(turn) = d) : plus;
 		(y = 2) & (x = 6) & ((v_36 = star) | (v_36 = dollar)) & (v_46 = minus) & (next(turn) = d) : dollar;
@@ -1031,6 +1163,24 @@ ASSIGN
 		(y = 6) & (x = 6) & ((v_56 = star) | (v_56 = dollar)) & (v_46 = minus) & (next(turn) = u) : dollar;
 		(y = 6) & (x = 6) & ((v_56 = star) | (v_56 = dollar)) & (v_46 = dot) & (next(turn) = u) : star;
 		TRUE : v_46;
+	esac;
+
+	next(v_47) := case
+		(y = 4) & (x = 7) & (v_47 = shtrudel) & (next(turn) != none) : minus;
+		(y = 4) & (x = 7) & (v_47 = plus) & (next(turn) != none) : dot;
+		(y = 4) & (x = 6) & ((v_47 = minus) | (v_47 = dollar)) & (next(turn) = r) : shtrudel;
+		(y = 4) & (x = 6) & ((v_47 = dot) | (v_47 = star)) & (next(turn) = r) : plus;
+		(y = 4) & (x = 5) & ((v_46 = star) | (v_46 = dollar)) & (v_47 = minus) & (next(turn) = r) : dollar;
+		(y = 4) & (x = 5) & ((v_46 = star) | (v_46 = dollar)) & (v_47 = dot) & (next(turn) = r) : star;
+		(y = 3) & (x = 7) & ((v_47 = minus) | (v_47 = dollar)) & (next(turn) = d) : shtrudel;
+		(y = 3) & (x = 7) & ((v_47 = dot) | (v_47 = star)) & (next(turn) = d) : plus;
+		(y = 2) & (x = 7) & ((v_37 = star) | (v_37 = dollar)) & (v_47 = minus) & (next(turn) = d) : dollar;
+		(y = 2) & (x = 7) & ((v_37 = star) | (v_37 = dollar)) & (v_47 = dot) & (next(turn) = d) : star;
+		(y = 5) & (x = 7) & ((v_47 = minus) | (v_47 = dollar)) & (next(turn) = u) : shtrudel;
+		(y = 5) & (x = 7) & ((v_47 = dot) | (v_47 = star)) & (next(turn) = u) : plus;
+		(y = 6) & (x = 7) & ((v_57 = star) | (v_57 = dollar)) & (v_47 = minus) & (next(turn) = u) : dollar;
+		(y = 6) & (x = 7) & ((v_57 = star) | (v_57 = dollar)) & (v_47 = dot) & (next(turn) = u) : star;
+		TRUE : v_47;
 	esac;
 
 	next(v_50) := case
@@ -1136,6 +1286,8 @@ ASSIGN
 		(y = 5) & (x = 3) & ((v_54 = star) | (v_54 = dollar)) & (v_55 = dot) & (next(turn) = r) : star;
 		(y = 5) & (x = 6) & ((v_55 = minus) | (v_55 = dollar)) & (next(turn) = l) : shtrudel;
 		(y = 5) & (x = 6) & ((v_55 = dot) | (v_55 = star)) & (next(turn) = l) : plus;
+		(y = 5) & (x = 7) & ((v_56 = star) | (v_56 = dollar)) & (v_55 = minus) & (next(turn) = l) : dollar;
+		(y = 5) & (x = 7) & ((v_56 = star) | (v_56 = dollar)) & (v_55 = dot) & (next(turn) = l) : star;
 		(y = 4) & (x = 5) & ((v_55 = minus) | (v_55 = dollar)) & (next(turn) = d) : shtrudel;
 		(y = 4) & (x = 5) & ((v_55 = dot) | (v_55 = star)) & (next(turn) = d) : plus;
 		(y = 3) & (x = 5) & ((v_45 = star) | (v_45 = dollar)) & (v_55 = minus) & (next(turn) = d) : dollar;
@@ -1152,6 +1304,8 @@ ASSIGN
 		(y = 5) & (x = 5) & ((v_56 = dot) | (v_56 = star)) & (next(turn) = r) : plus;
 		(y = 5) & (x = 4) & ((v_55 = star) | (v_55 = dollar)) & (v_56 = minus) & (next(turn) = r) : dollar;
 		(y = 5) & (x = 4) & ((v_55 = star) | (v_55 = dollar)) & (v_56 = dot) & (next(turn) = r) : star;
+		(y = 5) & (x = 7) & ((v_56 = minus) | (v_56 = dollar)) & (next(turn) = l) : shtrudel;
+		(y = 5) & (x = 7) & ((v_56 = dot) | (v_56 = star)) & (next(turn) = l) : plus;
 		(y = 4) & (x = 6) & ((v_56 = minus) | (v_56 = dollar)) & (next(turn) = d) : shtrudel;
 		(y = 4) & (x = 6) & ((v_56 = dot) | (v_56 = star)) & (next(turn) = d) : plus;
 		(y = 3) & (x = 6) & ((v_46 = star) | (v_46 = dollar)) & (v_56 = minus) & (next(turn) = d) : dollar;
@@ -1159,6 +1313,22 @@ ASSIGN
 		(y = 6) & (x = 6) & ((v_56 = minus) | (v_56 = dollar)) & (next(turn) = u) : shtrudel;
 		(y = 6) & (x = 6) & ((v_56 = dot) | (v_56 = star)) & (next(turn) = u) : plus;
 		TRUE : v_56;
+	esac;
+
+	next(v_57) := case
+		(y = 5) & (x = 7) & (v_57 = shtrudel) & (next(turn) != none) : minus;
+		(y = 5) & (x = 7) & (v_57 = plus) & (next(turn) != none) : dot;
+		(y = 5) & (x = 6) & ((v_57 = minus) | (v_57 = dollar)) & (next(turn) = r) : shtrudel;
+		(y = 5) & (x = 6) & ((v_57 = dot) | (v_57 = star)) & (next(turn) = r) : plus;
+		(y = 5) & (x = 5) & ((v_56 = star) | (v_56 = dollar)) & (v_57 = minus) & (next(turn) = r) : dollar;
+		(y = 5) & (x = 5) & ((v_56 = star) | (v_56 = dollar)) & (v_57 = dot) & (next(turn) = r) : star;
+		(y = 4) & (x = 7) & ((v_57 = minus) | (v_57 = dollar)) & (next(turn) = d) : shtrudel;
+		(y = 4) & (x = 7) & ((v_57 = dot) | (v_57 = star)) & (next(turn) = d) : plus;
+		(y = 3) & (x = 7) & ((v_47 = star) | (v_47 = dollar)) & (v_57 = minus) & (next(turn) = d) : dollar;
+		(y = 3) & (x = 7) & ((v_47 = star) | (v_47 = dollar)) & (v_57 = dot) & (next(turn) = d) : star;
+		(y = 6) & (x = 7) & ((v_57 = minus) | (v_57 = dollar)) & (next(turn) = u) : shtrudel;
+		(y = 6) & (x = 7) & ((v_57 = dot) | (v_57 = star)) & (next(turn) = u) : plus;
+		TRUE : v_57;
 	esac;
 
 	next(v_60) := case
@@ -1254,6 +1424,8 @@ ASSIGN
 		(y = 6) & (x = 3) & ((v_64 = star) | (v_64 = dollar)) & (v_65 = dot) & (next(turn) = r) : star;
 		(y = 6) & (x = 6) & ((v_65 = minus) | (v_65 = dollar)) & (next(turn) = l) : shtrudel;
 		(y = 6) & (x = 6) & ((v_65 = dot) | (v_65 = star)) & (next(turn) = l) : plus;
+		(y = 6) & (x = 7) & ((v_66 = star) | (v_66 = dollar)) & (v_65 = minus) & (next(turn) = l) : dollar;
+		(y = 6) & (x = 7) & ((v_66 = star) | (v_66 = dollar)) & (v_65 = dot) & (next(turn) = l) : star;
 		(y = 5) & (x = 5) & ((v_65 = minus) | (v_65 = dollar)) & (next(turn) = d) : shtrudel;
 		(y = 5) & (x = 5) & ((v_65 = dot) | (v_65 = star)) & (next(turn) = d) : plus;
 		(y = 4) & (x = 5) & ((v_55 = star) | (v_55 = dollar)) & (v_65 = minus) & (next(turn) = d) : dollar;
@@ -1268,11 +1440,39 @@ ASSIGN
 		(y = 6) & (x = 5) & ((v_66 = dot) | (v_66 = star)) & (next(turn) = r) : plus;
 		(y = 6) & (x = 4) & ((v_65 = star) | (v_65 = dollar)) & (v_66 = minus) & (next(turn) = r) : dollar;
 		(y = 6) & (x = 4) & ((v_65 = star) | (v_65 = dollar)) & (v_66 = dot) & (next(turn) = r) : star;
+		(y = 6) & (x = 7) & ((v_66 = minus) | (v_66 = dollar)) & (next(turn) = l) : shtrudel;
+		(y = 6) & (x = 7) & ((v_66 = dot) | (v_66 = star)) & (next(turn) = l) : plus;
 		(y = 5) & (x = 6) & ((v_66 = minus) | (v_66 = dollar)) & (next(turn) = d) : shtrudel;
 		(y = 5) & (x = 6) & ((v_66 = dot) | (v_66 = star)) & (next(turn) = d) : plus;
 		(y = 4) & (x = 6) & ((v_56 = star) | (v_56 = dollar)) & (v_66 = minus) & (next(turn) = d) : dollar;
 		(y = 4) & (x = 6) & ((v_56 = star) | (v_56 = dollar)) & (v_66 = dot) & (next(turn) = d) : star;
 		TRUE : v_66;
+	esac;
+
+	next(v_67) := case
+		(y = 6) & (x = 7) & (v_67 = shtrudel) & (next(turn) != none) : minus;
+		(y = 6) & (x = 7) & (v_67 = plus) & (next(turn) != none) : dot;
+		(y = 6) & (x = 6) & ((v_67 = minus) | (v_67 = dollar)) & (next(turn) = r) : shtrudel;
+		(y = 6) & (x = 6) & ((v_67 = dot) | (v_67 = star)) & (next(turn) = r) : plus;
+		(y = 6) & (x = 5) & ((v_66 = star) | (v_66 = dollar)) & (v_67 = minus) & (next(turn) = r) : dollar;
+		(y = 6) & (x = 5) & ((v_66 = star) | (v_66 = dollar)) & (v_67 = dot) & (next(turn) = r) : star;
+		(y = 5) & (x = 7) & ((v_67 = minus) | (v_67 = dollar)) & (next(turn) = d) : shtrudel;
+		(y = 5) & (x = 7) & ((v_67 = dot) | (v_67 = star)) & (next(turn) = d) : plus;
+		(y = 4) & (x = 7) & ((v_57 = star) | (v_57 = dollar)) & (v_67 = minus) & (next(turn) = d) : dollar;
+		(y = 4) & (x = 7) & ((v_57 = star) | (v_57 = dollar)) & (v_67 = dot) & (next(turn) = d) : star;
+		TRUE : v_67;
+	esac;
+
+	next(box_x) := case
+		(next(turn) = r) & (x = box_x - 1) & (box_x < m - 1) : box_x + 1;
+		(next(turn) = l) & (x = box_x + 1) & (box_x > 0) : box_x - 1;
+		TRUE : box_x;
+	esac;
+
+	next(box_y) := case
+		(next(turn) = u) & (y = box_y + 1) & (box_y > 0) : box_y - 1;
+		(next(turn) = d) & (y = box_y - 1) & (box_y < n - 1) : box_y + 1;
+		TRUE : box_y;
 	esac;
 
 LTLSPEC !F(done)
