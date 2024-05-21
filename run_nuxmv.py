@@ -17,6 +17,7 @@ dictonary = {
 
 def main():
     board_paths = os.listdir('boards/')[:-1] # Not using boardEx
+    print(board_paths)
     writers = import_writers(board_paths)
 
     for i, writer in enumerate(writers):
@@ -24,29 +25,24 @@ def main():
         writer.export_smv('smvs/' + board_paths[i][:-4] + '.smv')
 
     for i, path in enumerate(board_paths):
+        print(f"Working on {path[:-4]}")
         # run('smvs/' + path[:-4] + '.smv')
-        # run_SAT('smvs/' + path[:-4] + '.smv')
-        # run_BDD('smvs/' + path[:-4] + '.smv')
+        run_SAT('smvs/' + path[:-4] + '.smv')
+        run_BDD('smvs/' + path[:-4] + '.smv')
         run_iterative(writers[i].board, path[:-4])
-        # if path[:-4] == 'board7':
-        #     run_iterative(writers[i].board, path[:-4])
 
 def run_iterative(board, _id):
     board_copy = board.copy()
     total_time = 0
-    
+    box_counter = sum(row.count('$') for row in board_copy)
     i = 0
     while any('$' in row for row in board_copy):
-        # for j, idx in enumerate(box_indices):
-        #     # replace all boxes to wall except one box
-        #     if box_indices[j]:
-        #         if i != j:
-        #             partial_board[idx[0]][idx[1]] = '#'
-        #         else:
-        #             partial_board[idx[0]][idx[1]] = '$'
-
         path = 'iterativeSmvs/' + _id + '_box_iteration' + str(i + 1) + '.smv'
         i += 1
+
+        if i > box_counter:
+            print(f'Board {_id} not winnable')
+            break
 
         writer_iterative = SMVWriterIterative(specs_path='specs.txt', board=board_copy)
         writer_iterative.write_smv()
@@ -63,7 +59,7 @@ def run_iterative(board, _id):
         )
 
         # Send commands to nuXmv
-        commands = "go\ncheck_ltlspec\nquit\n"
+        commands = "go_bmc\ncheck_ltlspec_bmc -k 15\nquit\n"
         stdout, _ = nuxmv_process.communicate(input=commands)
 
         end = time.time()
@@ -88,7 +84,7 @@ def run_iterative(board, _id):
     return total_time
 
 def regex_proccessing(output, rows, cols):
-    if re.search('-- specification.*is true', output):
+    if re.search('-- specification.*is true', output) or re.search('-- no counterexample found with bound 15', output):
         return None
     
     board = [[] for _ in range(rows)]

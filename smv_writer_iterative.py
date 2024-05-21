@@ -22,24 +22,24 @@ class SMVWriterIterative(SMVWriter):
         super().add_transitions()
 
         self.content += f'\n\tnext(box_x) := case'\
-                        f'\n\t\t(next(turn) = r) & (x = box_x - 1) & (box_x < m - 1) : box_x + 1;'\
-                        f'\n\t\t(next(turn) = l) & (x = box_x + 1) & (box_x > 0) : box_x - 1;'\
+                        f'\n\t\t(next(turn) = r) & (x = box_x - 1) & (y = box_y) & (box_x < m - 1) : box_x + 1;'\
+                        f'\n\t\t(next(turn) = l) & (x = box_x + 1) & (y = box_y) & (box_x > 0) : box_x - 1;'\
                         f'\n\t\tTRUE : box_x;'\
                         f'\n\tesac;\n'
 
         self.content += f'\n\tnext(box_y) := case'\
-                        f'\n\t\t(next(turn) = u) & (y = box_y + 1) & (box_y > 0) : box_y - 1;'\
-                        f'\n\t\t(next(turn) = d) & (y = box_y - 1) & (box_y < n - 1) : box_y + 1;'\
+                        f'\n\t\t(next(turn) = u) & (y = box_y + 1) & (x = box_x) & (box_y > 0) : box_y - 1;'\
+                        f'\n\t\t(next(turn) = d) & (y = box_y - 1) & (x = box_x) & (box_y < n - 1) : box_y + 1;'\
                         f'\n\t\tTRUE : box_y;'\
                         f'\n\tesac;\n'
 
     def add_done(self):
-        self.content += f'\n\tdone :='
+        self.content += f'\n\tdone := '
         for i in range(self.n):
             for j in range(self.m):
                 self.content += f'((box_x = {j}) & (box_y = {i}) & (v_{i}{j} = star))'
                 if (i != self.n - 1) | (j != self.m - 1):
-                    self.content += f' |'
+                    self.content += f' | '
                 else:
                     self.content += ';\n'
 
