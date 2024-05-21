@@ -24,16 +24,15 @@ def main():
         writer.write_smv()
         writer.export_smv('smvs/' + board_paths[i][:-4] + '.smv')
 
+    for i, path in enumerate(board_paths):
+        print(f"Working on {path[:-4]}")
+        run('smvs/' + path[:-4] + '.smv')
+        run_SAT('smvs/' + path[:-4] + '.smv')
+        run_BDD('smvs/' + path[:-4] + '.smv')
+        run_iterative(writers[i].board, path[:-4])
+    
     run_iterative(writers[i].board, "board8")
     run_SAT('smvs/' + "board8" + '.smv')
-
-
-    # for i, path in enumerate(board_paths):
-    #     print(f"Working on {path[:-4]}")
-    #     # run('smvs/' + path[:-4] + '.smv')
-    #     run_SAT('smvs/' + path[:-4] + '.smv')
-    #     run_BDD('smvs/' + path[:-4] + '.smv')
-    #     run_iterative(writers[i].board, path[:-4])
 
 def run_iterative(board, _id):
     board_copy = board.copy()
