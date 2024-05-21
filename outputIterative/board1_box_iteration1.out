@@ -25,19 +25,44 @@
 *** See http://mathsat.fbk.eu
 
 nuXmv > nuXmv > -- no counterexample found with bound 0
--- no counterexample found with bound 1
--- no counterexample found with bound 2
--- no counterexample found with bound 3
--- no counterexample found with bound 4
--- no counterexample found with bound 5
--- no counterexample found with bound 6
--- no counterexample found with bound 7
--- no counterexample found with bound 8
--- no counterexample found with bound 9
--- no counterexample found with bound 10
--- no counterexample found with bound 11
--- no counterexample found with bound 12
--- no counterexample found with bound 13
--- no counterexample found with bound 14
--- no counterexample found with bound 15
-nuXmv > time in seconds: 10.489878177642822
+-- specification !( F done)    is false
+-- as demonstrated by the following execution sequence
+Trace Description: BMC Counterexample 
+Trace Type: Counterexample 
+  -> State: 1.1 <-
+    turn = none
+    possible_up = FALSE
+    possible_down = FALSE
+    possible_right = TRUE
+    possible_left = FALSE
+    y = 1
+    x = 1
+    v_00 = solamit
+    v_01 = solamit
+    v_02 = solamit
+    v_03 = solamit
+    v_04 = solamit
+    v_10 = solamit
+    v_11 = shtrudel
+    v_12 = dollar
+    v_13 = dot
+    v_14 = solamit
+    v_20 = solamit
+    v_21 = solamit
+    v_22 = solamit
+    v_23 = solamit
+    v_24 = solamit
+    box_y = 1
+    box_x = 2
+    done = FALSE
+    m = 5
+    n = 3
+  -> State: 1.2 <-
+    turn = r
+    x = 2
+    v_11 = minus
+    v_12 = shtrudel
+    v_13 = star
+    box_x = 3
+    done = TRUE
+nuXmv > 

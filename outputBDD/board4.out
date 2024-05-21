@@ -151,4 +151,4 @@ Trace Type: Counterexample
     possible_down = FALSE
     possible_left = FALSE
   -> State: 1.10 <-
-nuXmv > time in seconds: 4.551905155181885
+nuXmv > time in seconds: 6.52330756187439

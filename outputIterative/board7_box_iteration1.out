@@ -24,9 +24,20 @@
 *** Copyright (C) 2009-2019 by University of Trento and others
 *** See http://mathsat.fbk.eu
 
-nuXmv > nuXmv > -- specification !( F done)  is false
+nuXmv > nuXmv > -- no counterexample found with bound 0
+-- no counterexample found with bound 1
+-- no counterexample found with bound 2
+-- no counterexample found with bound 3
+-- no counterexample found with bound 4
+-- no counterexample found with bound 5
+-- no counterexample found with bound 6
+-- no counterexample found with bound 7
+-- no counterexample found with bound 8
+-- no counterexample found with bound 9
+-- no counterexample found with bound 10
+-- specification !( F done)    is false
 -- as demonstrated by the following execution sequence
-Trace Description: LTL Counterexample 
+Trace Description: BMC Counterexample 
 Trace Type: Counterexample 
   -> State: 1.1 <-
     turn = none
@@ -146,6 +157,8 @@ Trace Type: Counterexample
     v_98 = solamit
     v_99 = solamit
     v_910 = solamit
+    box_y = 3
+    box_x = 2
     done = FALSE
     m = 11
     n = 10
@@ -173,18 +186,21 @@ Trace Type: Counterexample
     v_31 = minus
     v_32 = shtrudel
     v_33 = dollar
+    box_x = 3
   -> State: 1.6 <-
     possible_left = TRUE
     x = 3
     v_32 = minus
     v_33 = shtrudel
     v_34 = dollar
+    box_x = 4
   -> State: 1.7 <-
     possible_up = FALSE
     x = 4
     v_33 = minus
     v_34 = shtrudel
     v_35 = dollar
+    box_x = 5
   -> State: 1.8 <-
     possible_up = TRUE
     possible_down = FALSE
@@ -192,12 +208,14 @@ Trace Type: Counterexample
     v_34 = minus
     v_35 = shtrudel
     v_36 = dollar
+    box_x = 6
   -> State: 1.9 <-
     possible_down = TRUE
     x = 6
     v_35 = minus
     v_36 = shtrudel
     v_37 = dollar
+    box_x = 7
   -> State: 1.10 <-
     turn = d
     possible_right = FALSE
@@ -217,10 +235,6 @@ Trace Type: Counterexample
     v_27 = star
     v_37 = shtrudel
     v_47 = minus
+    box_y = 2
     done = TRUE
-  -- Loop starts here
-  -> State: 1.13 <-
-    turn = none
-    possible_up = FALSE
-  -> State: 1.14 <-
-nuXmv > time in seconds: 1758.4822957515717
+nuXmv > 
