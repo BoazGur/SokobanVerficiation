@@ -16,7 +16,7 @@ dictonary = {
 }
 
 def main():
-    board_paths = os.listdir('boards/')[:-1] # Not using boardEx
+    board_paths = os.listdir('boards/')
     print(board_paths)
     writers = import_writers(board_paths)
 
