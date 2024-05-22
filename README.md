@@ -32,6 +32,10 @@ cd SokobanVerficiation
 * Verify you have Python 3 installed and accessible through your system PATH.
 * The required libraries (```subprocess```, ```itertools```, ```time```, ```os```, ```re```) should be included in most Python installations by default. 
 
+3. Donwload nuXmv:
+
+* Download nuXmv from: https://nuxmv.fbk.eu/download.html
+* Add nuXmv to PATH.
 
 ## Usage
 
