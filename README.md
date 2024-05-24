@@ -65,7 +65,7 @@ Key symbols:
 * ```*```   box on goal
 * ```#```   wall
 * ```.```   goal
-* ```_```   floor
+* ```-```   floor
 
 2. Write you nuXmv specification:
 
